@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/02 03:24:24 by vmercadi          #+#    #+#             */
-/*   Updated: 2016/12/02 05:09:32 by vmercadi         ###   ########.fr       */
+/*   Created: 2016/11/19 02:15:18 by vmercadi          #+#    #+#             */
+/*   Updated: 2016/12/05 22:01:24 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+/*
+** p1 = Chaine 1. 	p2 = Chaine 2. 	p3 = Le nombre de caractères à comparer.
+** Compare lexicographiquement les deux chaines jusqu'à N caracteres.
+** Ou la fin de la chaine. Return 1 si égales.
+*/
+
+int		ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	int		ok;
-
-	if (ac != 2)
-	{
-		ft_putstr("usage : ./fillit #FICHIER#");
+	if (!s1 || !s2)
 		return (0);
-	}
-	else
-	{
-		ok = maincheck(av[1]);
-		if (ok == 0)
-			ft_putstr("Le fichier n'est pas valide.\n");
-		else
-			ft_putstr("Le test1 est OK.\n");
-	}
+	if (ft_strncmp(s1, s2, n) == 0)
+		return (1);
+	return (0);
 }

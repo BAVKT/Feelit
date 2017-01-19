@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/02 03:24:24 by vmercadi          #+#    #+#             */
-/*   Updated: 2016/12/02 05:09:32 by vmercadi         ###   ########.fr       */
+/*   Created: 2016/11/19 05:02:21 by vmercadi          #+#    #+#             */
+/*   Updated: 2017/01/07 16:23:06 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+char		*ft_itoa(int n)
 {
-	int		ok;
+	int		i;
+	long	n2;
+	char	*s;
+	char	buf[42];
 
-	if (ac != 2)
+	i = 0;
+	n2 = (n < 0) ? -(long)n : n;
+	while (n2 > 0)
 	{
-		ft_putstr("usage : ./fillit #FICHIER#");
-		return (0);
+		buf[i++] = (n2 % 10) + 48;
+		n2 /= 10;
 	}
-	else
-	{
-		ok = maincheck(av[1]);
-		if (ok == 0)
-			ft_putstr("Le fichier n'est pas valide.\n");
-		else
-			ft_putstr("Le test1 est OK.\n");
-	}
+	if (n == 0)
+		buf[i++] = '0';
+	if (n < 0)
+		buf[i++] = '-';
+	if (i + 1 <= 0 || !(s = (char *)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
+	s[i] = '\0';
+	while (--i >= 0)
+		s[n2++] = buf[i];
+	return (s);
 }

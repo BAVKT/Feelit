@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   ft_lenlst.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/02 03:24:24 by vmercadi          #+#    #+#             */
-/*   Updated: 2016/12/02 05:09:32 by vmercadi         ###   ########.fr       */
+/*   Created: 2016/12/14 11:47:28 by vmercadi          #+#    #+#             */
+/*   Updated: 2016/12/14 12:28:44 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+int		ft_lenlst(t_list *lst)
 {
-	int		ok;
+	int nb;
 
-	if (ac != 2)
-	{
-		ft_putstr("usage : ./fillit #FICHIER#");
+	nb = 0;
+	if (!lst)
 		return (0);
-	}
-	else
+	while (lst)
 	{
-		ok = maincheck(av[1]);
-		if (ok == 0)
-			ft_putstr("Le fichier n'est pas valide.\n");
-		else
-			ft_putstr("Le test1 est OK.\n");
+		lst = lst->next;
+		nb++;
 	}
+	return (nb);
 }

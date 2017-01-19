@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/02 03:24:24 by vmercadi          #+#    #+#             */
-/*   Updated: 2016/12/02 05:09:32 by vmercadi         ###   ########.fr       */
+/*   Created: 2016/11/14 20:26:01 by vmercadi          #+#    #+#             */
+/*   Updated: 2016/11/17 06:03:58 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+char	*ft_strcpy(char *dst, const char *src)
 {
-	int		ok;
+	int i;
 
-	if (ac != 2)
+	i = 0;
+	while (src[i] != '\0')
 	{
-		ft_putstr("usage : ./fillit #FICHIER#");
-		return (0);
+		dst[i] = src[i];
+		i++;
 	}
-	else
-	{
-		ok = maincheck(av[1]);
-		if (ok == 0)
-			ft_putstr("Le fichier n'est pas valide.\n");
-		else
-			ft_putstr("Le test1 est OK.\n");
-	}
+	dst[i] = '\0';
+	return (dst);
 }

@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/02 03:24:24 by vmercadi          #+#    #+#             */
-/*   Updated: 2016/12/02 05:09:32 by vmercadi         ###   ########.fr       */
+/*   Created: 2016/11/14 20:10:59 by vmercadi          #+#    #+#             */
+/*   Updated: 2017/01/07 16:13:47 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+char	*ft_strdup(const char *s1)
 {
-	int		ok;
+	char	*s2;
+	int		i;
+	int		n;
 
-	if (ac != 2)
+	n = ft_strlen(s1);
+	i = 0;
+	if (n + 1 <= 0 || !(s2 = (char *)malloc(sizeof(char) * (n + 1))))
+		return (NULL);
+	while (i < n)
 	{
-		ft_putstr("usage : ./fillit #FICHIER#");
-		return (0);
+		s2[i] = s1[i];
+		i++;
 	}
-	else
-	{
-		ok = maincheck(av[1]);
-		if (ok == 0)
-			ft_putstr("Le fichier n'est pas valide.\n");
-		else
-			ft_putstr("Le test1 est OK.\n");
-	}
+	s2[i] = '\0';
+	return (s2);
 }

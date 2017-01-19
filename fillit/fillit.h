@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/02 03:24:24 by vmercadi          #+#    #+#             */
-/*   Updated: 2016/12/02 05:09:32 by vmercadi         ###   ########.fr       */
+/*   Created: 2017/01/17 03:24:24 by vmercadi          #+#    #+#             */
+/*   Created: 2017/01/17 03:24:24 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#ifndef __FILLIT_H
+# define __FILLIT_H
+#include "libft.h"
+#include <fcntl.h>
 
-int		main(int ac, char **av)
-{
-	int		ok;
+int 	checkforme(char *ligne);
+int		check(char *av);
+int		maincheck(char *av);
+char 	*strreplace(char *str, char c, char d);
+char	*daline(char *av);
 
-	if (ac != 2)
-	{
-		ft_putstr("usage : ./fillit #FICHIER#");
-		return (0);
-	}
-	else
-	{
-		ok = maincheck(av[1]);
-		if (ok == 0)
-			ft_putstr("Le fichier n'est pas valide.\n");
-		else
-			ft_putstr("Le test1 est OK.\n");
-	}
-}
+#endif

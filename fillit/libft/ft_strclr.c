@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/02 03:24:24 by vmercadi          #+#    #+#             */
-/*   Updated: 2016/12/02 05:09:32 by vmercadi         ###   ########.fr       */
+/*   Created: 2016/11/19 00:56:03 by vmercadi          #+#    #+#             */
+/*   Updated: 2016/11/26 11:48:07 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+/*
+** p1 = La chaine à clear.
+** Assigne la valeur ’\0’ à tous les caractères de la chaine passée en param.
+*/
+
+void	ft_strclr(char *s)
 {
-	int		ok;
-
-	if (ac != 2)
-	{
-		ft_putstr("usage : ./fillit #FICHIER#");
-		return (0);
-	}
-	else
-	{
-		ok = maincheck(av[1]);
-		if (ok == 0)
-			ft_putstr("Le fichier n'est pas valide.\n");
-		else
-			ft_putstr("Le test1 est OK.\n");
-	}
+	if (s)
+		ft_bzero(s, (int)ft_strlen(s));
 }

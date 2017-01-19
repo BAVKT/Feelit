@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/02 03:24:24 by vmercadi          #+#    #+#             */
-/*   Updated: 2016/12/02 05:09:32 by vmercadi         ###   ########.fr       */
+/*   Created: 2016/11/15 22:09:09 by vmercadi          #+#    #+#             */
+/*   Updated: 2017/01/03 15:26:07 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+size_t	ft_strlcat(char *dst, const char *src, size_t n)
 {
-	int		ok;
+	size_t	i;
+	size_t	k;
 
-	if (ac != 2)
+	i = 0;
+	if (!n)
+		return (ft_strlen(dst));
+	while (dst[i] != '\0' && i < n)
+		i++;
+	k = i;
+	while (src[i - k] != '\0' && i < n - 1)
 	{
-		ft_putstr("usage : ./fillit #FICHIER#");
-		return (0);
+		dst[i] = src[i - k];
+		i++;
 	}
-	else
-	{
-		ok = maincheck(av[1]);
-		if (ok == 0)
-			ft_putstr("Le fichier n'est pas valide.\n");
-		else
-			ft_putstr("Le test1 est OK.\n");
-	}
+	if (i < n)
+		dst[i] = '\0';
+	return (k + ft_strlen((char *)src));
 }

@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/02 03:24:24 by vmercadi          #+#    #+#             */
-/*   Updated: 2016/12/02 05:09:32 by vmercadi         ###   ########.fr       */
+/*   Created: 2016/11/23 11:40:50 by vmercadi          #+#    #+#             */
+/*   Updated: 2016/12/02 02:44:30 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+char	*ft_strstr(const char *s1, const char *s2)
 {
-	int		ok;
+	int		i;
+	int		j;
+	int		k;
 
-	if (ac != 2)
+	i = 0;
+	k = 0;
+	if (s2[k])
+		k++;
+	if (k == 0)
+		return ((char *)s1);
+	while (s1[i])
 	{
-		ft_putstr("usage : ./fillit #FICHIER#");
-		return (0);
+		j = 0;
+		while (s1[i + j] == s2[j])
+		{
+			if (j == (int)ft_strlen(s2) - 1)
+				return ((char *)s1 + i);
+			j++;
+		}
+		i++;
 	}
-	else
-	{
-		ok = maincheck(av[1]);
-		if (ok == 0)
-			ft_putstr("Le fichier n'est pas valide.\n");
-		else
-			ft_putstr("Le test1 est OK.\n");
-	}
+	return (NULL);
 }

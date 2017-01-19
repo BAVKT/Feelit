@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/02 03:24:24 by vmercadi          #+#    #+#             */
-/*   Updated: 2016/12/02 05:09:32 by vmercadi         ###   ########.fr       */
+/*   Created: 2016/11/16 01:10:16 by vmercadi          #+#    #+#             */
+/*   Updated: 2016/12/05 19:29:41 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+/*
+** Trouve la premiere occurence de c dans la chaine.
+*/
+
+char	*ft_strchr(const char *str, int c)
 {
-	int		ok;
+	int		i;
+	int		n;
+	char	c2;
+	char	*s;
 
-	if (ac != 2)
+	s = (char *)str;
+	c2 = c;
+	i = 0;
+	n = ft_strlen(str);
+	while (i < n + 1)
 	{
-		ft_putstr("usage : ./fillit #FICHIER#");
-		return (0);
+		if (s[i] == c)
+			return (&s[i]);
+		i++;
 	}
-	else
-	{
-		ok = maincheck(av[1]);
-		if (ok == 0)
-			ft_putstr("Le fichier n'est pas valide.\n");
-		else
-			ft_putstr("Le test1 est OK.\n");
-	}
+	return (NULL);
 }

@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/02 03:24:24 by vmercadi          #+#    #+#             */
-/*   Updated: 2016/12/02 05:09:32 by vmercadi         ###   ########.fr       */
+/*   Created: 2016/11/11 04:47:01 by vmercadi          #+#    #+#             */
+/*   Updated: 2016/12/04 21:18:40 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	int		ok;
+	char			*dst2;
+	unsigned char	*src2;
+	unsigned char	c2;
+	int				i;
 
-	if (ac != 2)
+	i = 0;
+	c2 = (unsigned char)c;
+	dst2 = (char *)dst;
+	src2 = (unsigned char *)src;
+	while (i < (int)n)
 	{
-		ft_putstr("usage : ./fillit #FICHIER#");
-		return (0);
+		dst2[i] = src2[i];
+		if (src2[i] == c2)
+			return (&dst2[i + 1]);
+		i++;
 	}
-	else
-	{
-		ok = maincheck(av[1]);
-		if (ok == 0)
-			ft_putstr("Le fichier n'est pas valide.\n");
-		else
-			ft_putstr("Le test1 est OK.\n");
-	}
+	return (NULL);
 }

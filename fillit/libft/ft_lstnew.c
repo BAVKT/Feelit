@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/02 03:24:24 by vmercadi          #+#    #+#             */
-/*   Updated: 2016/12/02 05:09:32 by vmercadi         ###   ########.fr       */
+/*   Created: 2016/11/19 06:13:00 by vmercadi          #+#    #+#             */
+/*   Updated: 2016/12/04 21:56:31 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	int		ok;
+	t_list *new;
 
-	if (ac != 2)
+	new = (t_list*)malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	if (!content)
 	{
-		ft_putstr("usage : ./fillit #FICHIER#");
-		return (0);
+		new->content = NULL;
+		new->content_size = 0;
 	}
 	else
 	{
-		ok = maincheck(av[1]);
-		if (ok == 0)
-			ft_putstr("Le fichier n'est pas valide.\n");
-		else
-			ft_putstr("Le test1 est OK.\n");
+		new->content = malloc(content_size);
+		ft_memcpy(new->content, content, content_size);
+		new->content_size = content_size;
 	}
+	new->next = NULL;
+	return (new);
 }

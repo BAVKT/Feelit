@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/02 03:24:24 by vmercadi          #+#    #+#             */
-/*   Updated: 2016/12/02 05:09:32 by vmercadi         ###   ########.fr       */
+/*   Created: 2016/11/19 00:37:57 by vmercadi          #+#    #+#             */
+/*   Updated: 2017/01/09 16:08:14 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+/*
+** p1 = La taille à allouer
+** Alloue et retourne une chaine de caractère “fraiche” terminée par un ’\0’. \
+** Chaque caractère de la chaine est initialisé à ’\0’. NULL si fail.
+*/
+
+char	*ft_strnew(size_t size)
 {
-	int		ok;
+	char	*s;
 
-	if (ac != 2)
-	{
-		ft_putstr("usage : ./fillit #FICHIER#");
-		return (0);
-	}
-	else
-	{
-		ok = maincheck(av[1]);
-		if (ok == 0)
-			ft_putstr("Le fichier n'est pas valide.\n");
-		else
-			ft_putstr("Le test1 est OK.\n");
-	}
+	if (!(s = (char *)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	ft_memset(s, '\0', size + 1);
+	return (s);
 }

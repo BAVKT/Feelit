@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/02 03:24:24 by vmercadi          #+#    #+#             */
-/*   Updated: 2016/12/02 05:09:32 by vmercadi         ###   ########.fr       */
+/*   Created: 2016/11/04 03:09:45 by vmercadi          #+#    #+#             */
+/*   Updated: 2017/01/05 11:27:51 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include <stdlib.h>
 
-int		main(int ac, char **av)
+int		*ft_range(int min, int max)
 {
-	int		ok;
+	int *tab;
+	int i;
+	int lenght;
 
-	if (ac != 2)
+	i = 0;
+	lenght = max - min;
+	if (min >= max)
 	{
-		ft_putstr("usage : ./fillit #FICHIER#");
-		return (0);
+		tab = NULL;
+		return (tab);
 	}
-	else
+	if (lenght <= 0 || !(tab = (int *)malloc(sizeof(int) * lenght)))
+		return (NULL);
+	while (i < lenght)
 	{
-		ok = maincheck(av[1]);
-		if (ok == 0)
-			ft_putstr("Le fichier n'est pas valide.\n");
-		else
-			ft_putstr("Le test1 est OK.\n");
+		tab[i] = min;
+		min += 1;
+		i++;
 	}
+	return (tab);
 }
