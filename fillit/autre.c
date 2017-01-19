@@ -19,6 +19,7 @@ t_lst	*separe(char *str)
 	int 	i;
 
 	i = 0;
+	str = "BLB"; //Juste our utiliser str pour compil
 	lst = (t_lst *)malloc(sizeof(t_lst));
 	return (lst);
 }

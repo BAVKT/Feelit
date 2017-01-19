@@ -28,6 +28,6 @@ int		check(char *av);
 int		maincheck(char *av);
 char 	*strreplace(char *str, char c, char d);
 char	*instr(char	*av);
-//t_lst	*separe(char *str);
+t_lst	*separe(char *str);
 
 #endif
