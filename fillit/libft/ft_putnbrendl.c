@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl.c                                       :+:      :+:    :+:   */
+/*   ft_putnbrendl.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/19 05:17:10 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/01/19 15:46:42 by vmercadi         ###   ########.fr       */
+/*   Created: 2017/01/19 15:45:16 by vmercadi          #+#    #+#             */
+/*   Updated: 2017/01/19 17:54:36 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl(char const *s)
+void	ft_putnbrendl(int i)
 {
-	if (s)
-	{
-		ft_putstr((char *)s);
-		ft_putchar('\n');
-	}
+	ft_putnbr(i);
+	ft_putchar('\n');
 }

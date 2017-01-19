@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl.c                                       :+:      :+:    :+:   */
+/*   ft_putnbrcolor.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/19 05:17:10 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/01/19 15:46:42 by vmercadi         ###   ########.fr       */
+/*   Created: 2017/01/19 16:27:49 by vmercadi          #+#    #+#             */
+/*   Updated: 2017/01/19 16:30:30 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl(char const *s)
+/*
+** Permet de mettre un chiffre en couleur.
+*/
+
+void	ft_putnbrcolor(int i, char *color)
 {
-	if (s)
-	{
-		ft_putstr((char *)s);
-		ft_putchar('\n');
-	}
+	ft_putstr(color);
+	ft_putnbrendl(i);
+	ft_putstr(RESET);
 }
