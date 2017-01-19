@@ -13,12 +13,11 @@
 #include "fillit.h"
 
 /*
-** Check si les pieces sont bien séparées par un seul \n 
+** Check si les pieces sont bien séparées par un seul \n
 */
-int		checknl(char *lignenl)
+int 	checknl(char *lignenl)
 {
 	int 	i;
-
 	i = 0;
 	while (lignenl[i++])
 	{
@@ -73,7 +72,7 @@ int 	checkforme(char *ligne)
 			i++;
 		else if (ligne[i] == '.')
 			i++;
-		else 		//Alors ca c'est le cancer, je sais pas pourquoi mais sinon ca marche pas.... Illogique
+		else 		//Alors ca c'est le cancer, je sais pas pourquoi mais sinon ca marche pas...
 			i++;
 		if (i % 6 == 0)
 			nbl++;
@@ -111,9 +110,7 @@ int		check(char *lignenl)
 	if (pt / diez == 3 && pt % diez == 0)
 		return (1);
 	else
-	{
 		return (0);
-	}
 }
 
 //Le main qui execute les checks
@@ -121,21 +118,18 @@ int		check(char *lignenl)
 // et dans le main checker si le t-lst resultant est pas = a NULL.
 int		maincheck(char *av)
 {
-	int 	ok;		//Retour du test 1
-	int 	okk;	//Retour du test 2
-	int 	okkk; 	//Retour du test 3
+	int 	ok;
 	char 	*ligne;
+	t_lst 	*lst;
 
 	ligne = instr(av);
 	if ((ok = check(ligne)))
 	{
-		if ((okk = checkforme(strreplace(ligne, '\n', '.'))))
+		if ((ok = checknl(ligne)))
 		{
-			if ((okkk = checknl(av)))
-			{
-				separe(ligne);
+			lst = separe(ligne);
+			if ((ok = checkforme(strreplace(ligne, '\n', '.'))))
 				return (1);
-			}
 		}
 	}
 	return (0);
