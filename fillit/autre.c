@@ -12,23 +12,19 @@
 
 #include "fillit.h"
 
-//Sert a remplacer les les \n par des '.' pour tout mettre apres en une ligne
-char 	*strreplace(char *str, char c, char d)
+//Place chaque piece dans la str de la liste.
+t_lst	*separe(char *str)
 {
-	int	i;
+	t_lst 	*lst;
+	int 	i;
 
 	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			str[i] = d;
-		i++;
-	}
-	return (str);
+	lst = (t_lst *)malloc(sizeof(t_lst));
+	return (lst);
 }
 
-//Pour mettre tous les tetriminos dans une ligne
-char	*daline(char *av)
+//Met l'ensemble des pieces dans une str AVEC les \n
+char	*instr(char	*av)
 {
 	int		fd;
 	int 	ret;
@@ -52,5 +48,20 @@ char	*daline(char *av)
 		buf[ret] = '\0';
 		ligne = ft_strjoin(ligne, buf);
 	}
-	return ((ligne = strreplace(ligne, '\n', '.')));
+	close(fd);
+	return (ligne);
+}
+//Sert a remplacer les les \n par des '.' pour tout mettre apres en une ligne
+char 	*strreplace(char *str, char c, char d)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			str[i] = d;
+		i++;
+	}
+	return (str);
 }

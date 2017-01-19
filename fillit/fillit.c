@@ -23,10 +23,10 @@ int		main(int ac, char **av)
 	}
 	else
 	{
-		ok = maincheck(av[1]);
-		if (ok == 0)
-			ft_putstr("Le fichier n'est pas valide.\n");
+		if ((ok = maincheck(av[1])))
+			ft_putstr("The file seems OK.\n");
 		else
-			ft_putstr("Le test1 est OK.\n");
+			ft_putstr("ERROR : The file isn't well formatted.\n");
 	}
+	return (0);
 }

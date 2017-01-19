@@ -26,8 +26,8 @@ int		checknl(char *av)
 		i = 0;
 		buf[ret] = '\0';
 		while (buf[i])
-		{
-			if (buf[i] == '\n' && buf[i + 1] == '\n' && buf[i + 2] == '\n')
+		{	//On vérifie juste qu'il y ait pas + de 3 nl a la suite
+			if (buf[i] == '\n' && buf[i + 1] == '\n' && buf[i + 2] == '\n')		
 				return (0);
 			i++;
 		}
@@ -40,14 +40,14 @@ int		checknl(char *av)
 int 	checkstartend(char *ligne, int *i, int nbl)
 {
 	if (*i > 1 && nbl == 1)
-	{
+	{	//Check pour la premiere ligne (on enleve le check de la piece du dessus parce qu'il y en aura jamais)
 		if (ligne[*i - 1] == '#' || ligne[*i + 1] == '#' || ligne[*i + 5] == '#')
 			return (1);
 		else 
 			return (0);		
 	}
 	else if (i < (int *)ft_strlen(ligne) && nbl == 4)
-	{
+	{	//Check pour la premiere ligne (on enleve le check de la piece du dessous pour la meme raison)
 		if (ligne[*i - 1] == '#' || ligne[*i + 1] == '#' || ligne[*i - 5] == '#')
 			return (1);
 		else 
@@ -60,26 +60,26 @@ int 	checkstartend(char *ligne, int *i, int nbl)
 int 	checkforme(char *ligne)
 {
 	int 	i;
-	int 	nbl;
+	int 	nbl;	//Nombre de ligne
 	int		ok;
 
 	i = 0;
 	nbl = 1;
 	ok = 1;
 	while (ligne[i])
-	{
+	{ 	//Chaque fois qu'on tombe sur un # on test si il touche bien un autre #
 		if (ligne[i] == '#' && (ok = checkstartend(ligne, &i, nbl))
 			 && (nbl == 1 || nbl == 4))
 			i++;
 		else if (ligne[i] == '.')
 			i++;
-		else
+		else 		//Alors ca c'est le cancer, je sais pas pourquoi mais sinon ca marche pas.... Illogique
 			i++;
 		if (i % 6 == 0)
 			nbl++;
-		if (nbl > 4)
+		if (nbl > 4)	//On remet nbl a 0 parce que la piece est finie.
 			nbl = 1;
-		if (ok == 0)
+		if (ok == 0) 	//On verifie que ok soit toujours = 1 sinon ca veut dire qu'il y a erreur
 			return (0);
 	}
 	return (1);
@@ -118,24 +118,22 @@ int		check(char *av)
 //Le main qui execute les checks
 int		maincheck(char *av)
 {
-	int ok;
-	int okk;
-	int okkk;
+	int 	ok;		//Retour du test 1
+	int 	okk;	//Retour du test 2
+	int 	okkk; 	//Retour du test 3
+	char 	*ligne;
 
+	ligne = instr(av);
 	if ((ok = check(av)))
 	{
-		if ((okk = checkforme(daline(av))))
+		if ((okk = checkforme(strreplace(ligne, '\n', '.'))))
 		{
 			if ((okkk = checknl(av)))
+			{
+				separe(ligne);
 				return (1);
+			}
 		}
-		else 
-			return (0);
-	}
-	else
-	{
-		ft_putstr("Erreur, le fichier passé est invalide. \n");
-		return (0);
 	}
 	return (0);
 }

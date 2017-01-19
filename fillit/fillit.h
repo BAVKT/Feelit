@@ -15,10 +15,19 @@
 #include "libft.h"
 #include <fcntl.h>
 
+//id = A ou B ou C, etc..
+typedef struct 		s_lst
+{
+	char			*piece;
+	char			id;
+	struct s_lst	*next;
+}					t_lst;
+
 int 	checkforme(char *ligne);
 int		check(char *av);
 int		maincheck(char *av);
 char 	*strreplace(char *str, char c, char d);
-char	*daline(char *av);
+char	*instr(char	*av);
+//t_lst	*separe(char *str);
 
 #endif
