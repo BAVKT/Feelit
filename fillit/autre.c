@@ -15,40 +15,33 @@
 /*
 ** Place chaque pièces dans la str de la liste.
 */
-//Reste a trouver pourquoi il accepte pas mon malloc ce gros batard
-//Puis a enregistrer l'adresse du premier maillon
-//Puis a tester le tout.
 t_lst	*separe(char *str)
 {
-	t_lst 	*lst;
+	t_lst	*lst;
+	t_lst 	*tmp;
 	int 	i;
 	int 	j;
-	int 	nbl;
 
-ft_putendl("On passe ici");
 	i = 0;
-	nbl = 1;
+	j = 0;
 	lst = (t_lst *)malloc(sizeof(t_lst));
-	while (str[i++])
+	tmp = lst;
+	lst->piece = ft_strnew(21);
+	while(str[i])
 	{
-		ft_putendl("NBL INFERIEUR  A 4");
-		if (str[i] == '\n')
-			nbl++;
-		if (nbl == 1)
-			lst->piece = (char *)malloc(sizeof((char) * (16)));
-		else if (nbl > 4)
+		if (j == 19 && i > 0)
 		{
-		ft_putendl("NBL > 4");
-			nbl = 1;
-			lst->piece[j] = '\0';
 			j = 0;
+			i++;
+			lst->next = (t_lst *)malloc(sizeof(t_lst));
 			lst = lst->next;
+			lst->piece = ft_strnew(21);
 		}
 		else
 			lst->piece[j++] = str[i];
+		i++;
 	}
-	ft_putendl("On passe a la fin");
-	return (lst);
+	return (tmp);
 }
 
 /*

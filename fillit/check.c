@@ -72,7 +72,8 @@ int 	checkforme(char *ligne)
 			i++;
 		else if (ligne[i] == '.')
 			i++;
-		else 		//Alors ca c'est le cancer, je sais pas pourquoi mais sinon ca marche pas...
+		if (ligne[i - 1] == '#' || ligne[i + 1] == '#' || 
+			ligne[i + 5] == '#' || ligne[i - 5] == '#')
 			i++;
 		if (i % 6 == 0)
 			nbl++;
@@ -98,6 +99,8 @@ int		check(char *lignenl)
 	diez = 0;
 	while (lignenl[i] != '\0')
 	{
+		if (lignenl[i] != '\n' && lignenl[i] != '.' && lignenl[i] != '#')
+			return (0);
 		if (((pt + diez) / 4 == 0 && lignenl[i] != '\n' && lignenl[i] != '.' 
 			 && lignenl[i] != '#') || pt + diez > 417)
 			return (0);

@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstpush.c                                       :+:      :+:    :+:   */
+/*   ft_putcharendl.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/14 11:50:37 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/01/20 14:01:48 by vmercadi         ###   ########.fr       */
+/*   Created: 2017/01/21 14:41:47 by vmercadi          #+#    #+#             */
+/*   Updated: 2017/01/21 15:33:03 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstpush(t_list *lst, t_list new)
+void	ft_putcharendl(char c)
 {
-	while (lst->next)
-		lst = lst->next;
-	lst->next = new;
+	ft_putchar(c);
+	ft_putchar('\n');
 }
