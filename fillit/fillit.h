@@ -28,16 +28,20 @@ typedef struct 		s_lst
 typedef struct 		s_cube
 {
 	char 			**c;
+	char 			**tmp;
 	int 			i;				//Index 1
 	int 			j;				//Index 2
 	int 			size; 			//La taille du cube
+	int 			nbiter;
+	int 			len; 			//La lngueur de la lst;
+	t_lst 			firstma;		//Le premier maillon
 }					t_cube;
 t_cube				g_c;
 
 //Pour ranger la forme la plus petite trouvee
 typedef struct 		s_stock
 {
-	int		taille;
+	int		size;
 	char	**bestcube;
 }					t_stock;
 t_stock				g_stock;
@@ -52,10 +56,9 @@ char	*instr(char	*av);
 t_lst	*separe(char *str);
 void	ft_rempid(t_lst *lst);
 void	ft_resetok(t_lst *lst);
-void	ft_isgud(char **tmp);
-int 	ft_capasse(t_lst lst, char **tmp);
-int 	ft_chercheplace(t_lst lst, char **tmp);
+void	ft_isgud();
+int 	ft_capasse(t_lst lst);
+int 	ft_chercheplace(t_lst lst);
 void	ft_testordre(t_lst *lst);
 int		mainres(t_lst *lst);
-
 #endif

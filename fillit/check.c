@@ -125,6 +125,7 @@ int		maincheck(char *av)
 	char 	*ligne;
 	t_lst 	*lst;
 
+	g_c.firstma = &lst;
 	ligne = instr(av);
 	if ((ok = check(ligne)))
 	{

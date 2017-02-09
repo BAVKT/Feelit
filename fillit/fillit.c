@@ -21,12 +21,10 @@ int		main(int ac, char **av)
 		ft_putstr("usage : ./fillit #FICHIER#");
 		return (0);
 	}
+	if ((ok = maincheck(av[1])))
+		ft_putstr("The file seems OK.\n");
 	else
-	{
-		if ((ok = maincheck(av[1])))
-			ft_putstr("The file seems OK.\n");
-		else
-			ft_putstr("ERROR : The file isn't well formatted.\n");
-	}
+		ft_putstr("ERROR : The file isn't well formatted.\n");
+	mainres(&g_c.firstma);
 	return (0);
 }
