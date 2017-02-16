@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   autre.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/17 03:24:24 by vmercadi          #+#    #+#             */
-/*   Created: 2017/01/17 03:24:24 by vmercadi         ###   ########.fr       */
+/*   Created: 2017/02/09 22:50:08 by vmercadi          #+#    #+#             */
+/*   Updated: 2017/02/16 17:03:37 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+
+
+#include <stdio.h>
+
+
+//Len lst modified
+int		lenlst(t_lst *lst)
+{
+	int nb;
+
+	nb = 0;
+	if (!lst)
+		return (0);
+	while (lst->next)
+	{
+		lst = lst->next;
+		nb++;
+	}
+	return (nb);
+}
 
 /*
 ** Place chaque pièces dans la str de la liste.
@@ -29,6 +50,8 @@ t_lst	*separe(char *str)
 	lst->piece = ft_strnew(21);
 	while(str[i])
 	{
+		if (!g_c.firstma)
+			g_c.firstma = lst;
 		if (j == 19 && i > 0)
 		{
 			j = 0;

@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/17 03:24:24 by vmercadi          #+#    #+#             */
-/*   Created: 2017/01/17 03:24:24 by vmercadi         ###   ########.fr       */
+/*   Created: 2017/02/09 22:50:09 by vmercadi          #+#    #+#             */
+/*   Updated: 2017/02/15 17:25:30 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+
+#include <stdio.h>
 
 /*
 ** Check si les pieces sont bien séparées par un seul \n
@@ -40,14 +43,14 @@ int 	checkstartend(char *ligne, int *i, int nbl)
 	{	//Check pour la premiere ligne (on enleve le check de la piece du dessus parce qu'il y en aura jamais)
 		if (ligne[*i - 1] == '#' || ligne[*i + 1] == '#' || ligne[*i + 5] == '#')
 			return (1);
-		else 
-			return (0);		
+		else
+			return (0);
 	}
 	else if (i < (int *)ft_strlen(ligne) && nbl == 4)
 	{	//Check pour la premiere ligne (on enleve le check de la piece du dessous pour la meme raison)
 		if (ligne[*i - 1] == '#' || ligne[*i + 1] == '#' || ligne[*i - 5] == '#')
 			return (1);
-		else 
+		else
 			return (0);
 	}
 	return (1);
@@ -125,13 +128,13 @@ int		maincheck(char *av)
 	char 	*ligne;
 	t_lst 	*lst;
 
-	g_c.firstma = &lst;
 	ligne = instr(av);
 	if ((ok = check(ligne)))
 	{
 		if ((ok = checknl(ligne)))
 		{
 			lst = separe(ligne);
+			g_c.firstma = lst;
 			if ((ok = checkforme(strreplace(ligne, '\n', '.'))))
 				return (1);
 		}

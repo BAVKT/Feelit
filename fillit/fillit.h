@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/17 03:24:24 by vmercadi          #+#    #+#             */
-/*   Created: 2017/01/17 03:24:24 by vmercadi         ###   ########.fr       */
+/*   Created: 2017/02/09 22:50:11 by vmercadi          #+#    #+#             */
+/*   Updated: 2017/02/16 19:04:15 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ typedef struct 		s_cube
 	int 			j;				//Index 2
 	int 			size; 			//La taille du cube
 	int 			nbiter;
-	int 			len; 			//La lngueur de la lst;
-	t_lst 			firstma;		//Le premier maillon
+	int 			len; 			//La longueur de la lst;
+	int 			taillemin; 		//LA taille minimum du cube;
+	t_lst 			*firstma;		//Le premier maillon
 }					t_cube;
 t_cube				g_c;
 
@@ -57,8 +58,9 @@ t_lst	*separe(char *str);
 void	ft_rempid(t_lst *lst);
 void	ft_resetok(t_lst *lst);
 void	ft_isgud();
-int 	ft_capasse(t_lst lst);
-int 	ft_chercheplace(t_lst lst);
+int 	ft_capasse(t_lst *lst);
+int 	ft_chercheplace();
 void	ft_testordre(t_lst *lst);
 int		mainres(t_lst *lst);
+int		lenlst(t_lst *lst);
 #endif

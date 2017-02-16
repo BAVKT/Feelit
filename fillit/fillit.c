@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/02 03:24:24 by vmercadi          #+#    #+#             */
-/*   Updated: 2016/12/02 05:09:32 by vmercadi         ###   ########.fr       */
+/*   Created: 2017/02/09 22:50:09 by vmercadi          #+#    #+#             */
+/*   Updated: 2017/02/15 17:11:30 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int		main(int ac, char **av)
 		ft_putstr("The file seems OK.\n");
 	else
 		ft_putstr("ERROR : The file isn't well formatted.\n");
-	mainres(&g_c.firstma);
+	mainres(g_c.firstma);
 	return (0);
 }

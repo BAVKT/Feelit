@@ -57,6 +57,8 @@ void 	ft_initcube()
 		i++;
 	}
 	ft_addpoint();
+							ft_putendl("INITCUBE CUBE");
+							ft_printcube();
 }
 
 //Ajout d'une ligne au cube
