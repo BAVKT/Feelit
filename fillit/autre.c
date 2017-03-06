@@ -6,18 +6,51 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:08 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/02/16 17:03:37 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/03/06 02:28:03 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 
+/*
+**	Met les pieces le plus en haut à gauche dans lst->piece 
+*/
+/*
+MARCHE PAS 
+void 	upleft(t_lst *lst)
+{
+	int i;		//Index dans la piece 
+	int l; 		//la ligne en y 
+	int k; 		//nombre de diezs
 
-#include <stdio.h>
+	i = 0;
+	l = 1;
+	k = 0;
+	while (lst->piece[i])
+	{
+		if (lst->piece[i] == '#')
+		{
+			lst->piece[(i % l) + k] = '#';
+			lst->piece[i] = '.';
+			k++;
+			i++;
+		}
+		else if (lst->piece[i] == '\n')
+		{
+			if (k != 0)
+				l++;
+			k = 0;
+			i++;
+		}
+		i++;
+	}
+}
+*/
 
-
-//Len lst modified
+/*
+**Len lst modified
+*/
 int		lenlst(t_lst *lst)
 {
 	int nb;
@@ -39,15 +72,14 @@ int		lenlst(t_lst *lst)
 t_lst	*separe(char *str)
 {
 	t_lst	*lst;
-	t_lst 	*tmp;
 	int 	i;
 	int 	j;
+	int 	k;
 
 	i = 0;
 	j = 0;
+	k = 0;
 	lst = (t_lst *)malloc(sizeof(t_lst));
-	tmp = lst;
-	lst->piece = ft_strnew(21);
 	while(str[i])
 	{
 		if (!g_c.firstma)
@@ -56,15 +88,16 @@ t_lst	*separe(char *str)
 		{
 			j = 0;
 			i++;
+			lst->id = 'A' + k++;
 			lst->next = (t_lst *)malloc(sizeof(t_lst));
 			lst = lst->next;
-			lst->piece = ft_strnew(21);
 		}
 		else
 			lst->piece[j++] = str[i];
 		i++;
 	}
-	return (tmp);
+	lst->next = NULL;
+	return (g_c.firstma);
 }
 
 /*

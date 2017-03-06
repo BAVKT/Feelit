@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/02/16 19:04:15 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/03/06 02:28:02 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 typedef struct 		s_lst
 {
 	int 			ok; 			//Si on a deja essayé de la placer.
-	char			*piece; 		//La str de la piece 
+	char			piece[21]; 		//La str de la piece 
 	char			id; 			//La lettre
 	struct s_lst	*next; 			//Le prochain maillon
 }					t_lst;
@@ -63,4 +63,5 @@ int 	ft_chercheplace();
 void	ft_testordre(t_lst *lst);
 int		mainres(t_lst *lst);
 int		lenlst(t_lst *lst);
+void	upleft(t_lst *lst);
 #endif

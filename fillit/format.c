@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:07 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/02/16 19:02:25 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/03/06 04:25:32 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,35 @@
 
 
 #include <stdio.h>
-/*
-**
-** PEUT ETRE QU'IL FAUT METTRE DES POINTS A LA PLACE DES FLECHES
-** OU INVERSEMENT COMME ON PASSE UN MAILLON DE LA STRUCT
-**
-*/
 
-//Fonction de racine carré
+/*
+**	Pour effacer la piece dans le tmp si elle est rentree qu'en pqrtie ou pas du tout.
+*/
+void	rmpiece(t_lst *lst)
+{
+	ft_putendl("rmpiece");
+
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (i < g_c.size)
+	{
+		j = 0;
+		while (j < g_c.size)
+		{
+			if (g_c.tmp[i][j] == lst->id)
+				g_c.tmp[i][j] = '.';
+			j++;
+		}
+		i++;
+	}
+}
+
+/*
+** Fonction de racine carré
+*/
 int		ft_sqrt(int nb)
 {
 	int		prime;
@@ -34,13 +55,12 @@ int		ft_sqrt(int nb)
 		i++;
 		prime = i * i;
 	}
-	if (prime == nb)
 		return (i);
-	else
-		return (i + 1);
 }
 
-//Affichage du cube
+/*
+** Affichage du cube
+*/
 void 	ft_printcube()
 {
 	ft_putendl("printcube");
@@ -105,7 +125,7 @@ void 	ft_printcubestock()
 	}
 }
 
-
+/*
 //Rempli de point
 void	ft_addpoint()
 {
@@ -127,8 +147,11 @@ void	ft_addpoint()
 		i++;
 	}
 }
+*/
 
-//Initialiation du cube et le rempli de points.
+/*
+**Initialiation du cube et le rempli de points.
+*/
 void 	ft_initcube()
 {
 	ft_putendl("inicube");
@@ -147,59 +170,38 @@ void 	ft_initcube()
 		g_c.c[i] = (char *)malloc(sizeof(char) * g_c.size);		
 		i++;
 	}
-
-	//ft_printcubetmp();
-	ft_addpoint();
-	//ft_printcubetmp();
-	if (g_c.tmp)
-	{
-					ft_putendl("1");
-		i = 0;
-		while (i < g_c.size - 1)
-		{
-					ft_putstr("i");
-					ft_putnbrendl(i);
-			j = 0;
-			while (j < g_c.size - 1)
-			{
-					ft_putstr("j");
-					ft_putnbrendl(j);
-				g_c.c[i][j] = g_c.tmp[i][j];
-				j++;
-			}
-			i++;
-		}
-		ft_printcubetmp();
-		ft_putstr(" initcube");
-	}
-
-}
-
-//Ajout d'une ligne au cube
-void 	ft_onemore()
-{
-	ft_putendl("onemore");
-	int i;
-	int j;
-	char **tmp;
-
-	tmp = g_c.c;
-	g_c.size += 1;
-	ft_initcube();
 	i = 0;
-	while (i < g_c.size - 1)
+	while (i < g_c.size)
 	{
 		j = 0;
-		while (j < g_c.size - 1)
+		while (j < g_c.size)
 		{
-			g_c.c[i][j] = tmp[i][j];
+			g_c.c[i][j] = '.';
 			j++;
 		}
 		i++;
 	}
 }
 
-//Fonction pour calculer le factoriel
+/*
+**Ajout d'une ligne au cube
+*/
+void 	ft_onemore()
+{
+	ft_putendl("onemore");
+	int i;
+
+	i = 0;
+	while (i < g_c.size)
+		free(g_c.c[i++]);
+	free(g_c.c);
+	g_c.size += 1;
+	ft_initcube();
+}
+
+/*
+**Fonction pour calculer le factoriel
+*/
 int 	ft_fact(int nb)
 {
 	ft_putendl("fact");
@@ -216,7 +218,9 @@ int 	ft_fact(int nb)
 	return (r);
 }
 
-//Fonction pour remplir l'ID de chaque piece
+/*
+**Fonction pour remplir l'ID de chaque piece
+*/
 void 	ft_rempid(t_lst *lst)
 {
 	ft_putendl("rempid");
@@ -231,7 +235,9 @@ void 	ft_rempid(t_lst *lst)
 	}
 }
 
-//Fonction pour reset le OK de chaque maillon a chaque test d'ordre
+/*
+**Fonction pour reset le OK de chaque maillon a chaque test d'ordre
+*/
 void	ft_resetok(t_lst *lst)
 {
 	ft_putendl("resetok");
@@ -242,7 +248,9 @@ void	ft_resetok(t_lst *lst)
 	}
 }
 
-//Pour tester si le cube est mieux que celui deja enregistré et l'enregistrer.
+/*
+**Pour tester si le cube est mieux que celui deja enregistré et l'enregistrer.
+*/
 void	ft_isgudcube()
 {
 	ft_putendl("isgudcube");
@@ -252,7 +260,9 @@ void	ft_isgudcube()
 	g_stock.bestcube = g_c.tmp;
 }
 
-//Pour enregistrer la piece dans le cube si elle rentre.
+/*
+**Pour enregistrer la piece dans le cube si elle rentre.
+*/
 void	ft_isgudpiece()
 {
 	ft_putendl("isgudpiece");
@@ -272,8 +282,9 @@ void	ft_isgudpiece()
 	}
 }
 
-//Trouver comemnt calculer l'index l'index J
-//Check si la piece rentre et la met dans cube si c'est bon
+/*
+** ca paaaaasssssse
+*/
 int 	ft_capasse(t_lst *lst)
 {
 	ft_putendl("capasse");
@@ -285,60 +296,32 @@ int 	ft_capasse(t_lst *lst)
 
 	k = 0;
 	l = 0;
-	nb = 1;
+	nb = 0;
 	i = g_c.i;
 	j = g_c.j;
 	g_c.tmp = g_c.c;
-	while (lst->piece[l] != '#')
-		l++;
-	while (lst->piece[k + l] || nb == 4)
+	while (lst->piece[k] && nb < 4 && lst->ok == 0)
 	{
-														ft_putstr("piece[k + l] = ");
-														ft_putchar(lst->piece[k + l]);
-														ft_putchar('\n');
-														ft_putstr("k + l = ");
-														ft_putnbrendl(k + l);
-														ft_putstr("k = ");
-														ft_putnbrendl(k);
-														ft_putstr("l = ");
-														ft_putnbrendl(l);
-		if (lst->piece[k + l] == '#')
+		if (lst->piece[k] == '#')
 		{
-														ft_putendl("ON PASSE ICI");
-														ft_putstr("AVANT g_c.tmp[i][j] = ");
-														ft_putchar(g_c.tmp[i + (k / 6)][j + (k % 5)]);
-														ft_putchar('\n');
-														ft_putstr("[i + (k / 6)] = ");
-														ft_putnbr(i + (k / 6));
-														ft_putchar('\n');
-														ft_putstr("[j + (k mod 5)] = ");
-														ft_putnbr(j + (k % 5));
-														ft_putchar('\n');
-			if (!g_c.tmp[i + (k  / 6)][j + (k % 5)])
+			if (i + (k / 5) >= g_c.size || j + (k % 5) >= g_c.size ||
+				g_c.tmp[i + (k / 5)][j + (k % 5)] != '.')
 				return(0);
-			if (g_c.tmp[i + (k / 6)][j + (k % 5)] == '.')
-				g_c.tmp[i + (k / 6)][j + (k % 5)] = '#';	//Pas sur des indexs
+			if (g_c.tmp[i + (k / 5)][j + (k % 5)] == '.')
+				g_c.tmp[i + (k / 5)][j + (k % 5)] = lst->id;	//Pas sur des indexs
 			nb++;
-														ft_putstr("i = ");
-														ft_putnbrendl(i);	
-														ft_putstr("j = ");
-														ft_putnbrendl(j);	
-														ft_putstr("k = ");
-														ft_putnbrendl(k);
-														ft_putstr("l = ");
-														ft_putnbrendl(l);	
-														ft_putstr("APRES g_c.tmp[i][j] = ");
-														ft_putchar(g_c.tmp[i + (k / 6)][j + (k % 5)]);
-														ft_putchar('\n');
-														ft_printcubetmp();
-														ft_putstr("nb = ");
-														ft_putnbrendl(nb);
 		}
 		k++;
+									ft_putendl("++ CAPASSE ");
+									ft_putendl("capasse piece = ");
+									ft_putendl(lst->piece);
+									ft_putstr("lst->ID = ");
+									ft_putcharendl(lst->id);
+									ft_printcube();
 	}
 	if (nb == 4)
 	{
-									ft_putendl("ON EST DANS NB == 4");
+		ft_putendl("nb == 4");
 		ft_isgudpiece(); 		//Comme c'est bon on enregistre la piece
 		return (1);
 	}
@@ -358,33 +341,67 @@ int 	reso(t_lst *lst)
 		ft_chercheplace();
 		if (ft_capasse(lst)) 		//Si la piece rentre on la place
 		{
+			ft_putendl("LA CEST PASSSEEEEEE");
 			lst->ok = 1;
-			nbok++; 				//On incremente le nb de piece placees
+			nbok++;					//On incremente le nb de piece placees
+			lst = g_c.firstma;
 		}
-		if (!lst->next) 			//Si y a plus d'autres maillons
+		if (lst->ok == 0)
 		{
+									ft_putendl("ON PASSEEE IIIICCCCCIIIIIIII");
+									ft_putendl("piece : ");
+									ft_putendl(lst->piece);
+									ft_putstr("Adresse maillon = ");
+									printf("%p", lst);
+									fflush(stdout);
+									ft_putchar('\n');
+									ft_putstr("lst->ID = ");
+									ft_putnbrendl(lst->id);
+									ft_putendl("if lst->ok AVANT");
+									ft_printcube();		
+			rmpiece(lst);
+									ft_putendl("if lst->ok APRES");
+									ft_printcube();		
+		}
+		if (!lst->next && g_c.i >= g_c.size && g_c.j >= g_c.size) //Si y a plus d'autres maillons ni place
+		{
+					ft_putendl("IF + ONEMORE + RESET OK");
+
 			ft_onemore();			//On agrandi le tableau
 			lst = g_c.firstma; 		//On retourne au debut de la liste.
-						ft_putendl("reso/Adresse firstma = ");
-						printf("%p\n", g_c.firstma);
+			ft_resetok(lst);
+			g_c.i = 0;
+			g_c.j = 0;
+			nbok = 0;
+		}
+		else if (!lst->next)
+		{
+			ft_putendl("ELSE IF lst = firstma");
+			g_c.i++;
+			g_c.j++;
+			lst = g_c.firstma;
 		}
 		else
+		{
+			ft_putendl("ELSE lst->next");
 			lst = lst->next; 		//Sinon on passe à la prochaine piece
-		g_c.i++;
-		g_c.j++;
+		}
 	}
 	ft_isgudcube();
 	return (1);
 }
 
-//Avance dans le tableau jusqu'a la recherche d'un point
+/*
+**Avance dans le tableau jusqu'a la recherche d'un point
+*/
 int 	ft_chercheplace()
 {
 	ft_putendl("chercheplace");
+
 	g_c.tmp = g_c.c;
-	while (g_c.tmp[g_c.i][g_c.j] != '.' && g_c.tmp[g_c.i][g_c.j])
+	while (g_c.tmp[g_c.i][g_c.j] != '.' && g_c.i < g_c.size && g_c.j <= g_c.size)
 	{
-		if (g_c.tmp[g_c.i][g_c.j] == '\n')
+		if (g_c.tmp[g_c.i][g_c.j] == '\0')
 		{
 				g_c.i++;
 				g_c.j = 0;
@@ -392,18 +409,6 @@ int 	ft_chercheplace()
 		else
 			g_c.j++;
 	}
-	
-/*
-	//Peut etre besoin de faire une incrementation de j pour pas boucler sur le meme point
-	if (ft_capasse(lst) == 0 && g_c.j != g_c.size - 1 && lst->ok == 0)	//On rappelle tant qu'on sait pas 
-		ft_capasse((lst = lst->next));
-	ft_resetok();
-	if (ft_capasse(lst) == 0 && g_c.j != g_c.size - 1 && lst->ok == 1)	//On rappelle tant qu'on sait pas 
-		ft_chercheplace((lst = lst->next));
-	if (g_c.j == g_c.size - 1)	//Si on est a la fin du cube
-		ft_onemore();
-	return(1);
-*/
 	return (1);
 }
 
@@ -414,6 +419,7 @@ int 	ft_chercheplace()
 void	ft_testordre(t_lst *lst)
 {
 	ft_putendl("testordre");
+
 	t_lst 	*tmplst;
 	int 	i;
 	int 	j;
@@ -436,20 +442,19 @@ void	ft_testordre(t_lst *lst)
 			lst->ok = 1;
 			lst = lst->next;
 		}
-		ft_resetok(tmplst);//Pas sur de comment passer le 1st maillon sans changer tmplst
+		ft_resetok(tmplst); //Pas sur de comment passer le 1st maillon sans changer tmplst
 	}
 }
 
-//Le main de resolution + initialisation des variables.
+/*
+**Le main de resolution + initialisation des variables.
+*/
 int		mainres(t_lst *lst)
 {
 	ft_putendl("mainres");
 
-									ft_putendl("+1");
 	g_c.i = 0;
-									ft_putendl("+2");
 	g_c.j = 0;
-									ft_putendl("+3");
 	g_c.len = lenlst(lst);
 									ft_putstr("g_c.len = ");
 									ft_putnbrendl(g_c.len);
@@ -465,19 +470,9 @@ int		mainres(t_lst *lst)
 									ft_putendl("+6");
 	ft_resetok(lst);
 	if (reso(lst))
+	{
+		ft_printcube();
 		return (1);
+	}
 	return (0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

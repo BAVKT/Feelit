@@ -1,98 +1,37 @@
 #include "fillit.h"
-
-//Affichage du cube
-void 	ft_printcube()
+/*
+//Pour voir si upleft marche.
+int 	main(int ac, char **av)
 {
-	ft_putendl("printcube");
-	int i;
-	int j;
+	t_lst *lst;
 
-	i = 0;
-	while (i < g_c.size)
+	maincheck(av[1]);
+	lst = g_c.firstma;
+	while (lst->next)
 	{
-		j = 0;
-		while (j < g_c.size)
-		{
-			ft_putchar(g_c.c[i][j]);
-			j++;
-		}
-		i++;
-		ft_putchar('\n');
+		ft_putendl("AVANT");
+		ft_putendl(lst->piece);
+		ft_putendl("APRES");
+		upleft(lst);
+		ft_putendl(lst->piece);
+		lst = lst->next;
 	}
-}
+	return (0);
+}*/
 
-//Rempli de point
-void	ft_addpoint()
+int main(int ac, char **av)
 {
-	ft_putendl("addpoint");
-	int i;
-	int j;
+	t_lst *lst;
 
-	i = 0;
-	while (i < g_c.size)
+	if (maincheck(av[1]) == 1)
+		ft_putendl("FIlE IS OKAY");
+	else
+		ft_putendl("FILE IS NOT OKAY");
+	lst = g_c.firstma;
+	while (lst->next)
 	{
-		j = 0;
-		while (j < g_c.size)
-		{
-			if (g_c.c[i][j] != '.' || 
-				(g_c.c[i][j] <= 'A' && g_c.c[i][j] >= 'Z'))
-				g_c.c[i][j] = '.';
-			j++;
-		}
-		i++;
+		ft_putcharendl(lst->id);
+		lst = lst->next;
 	}
-}
-
-//Initialiation du cube et le rempli de points.
-void 	ft_initcube()
-{
-	ft_putendl("inicube");
-	int i;
-
-	i = 0;
-	g_c.c = (char **)malloc(sizeof(char *) * g_c.size);
-	while (i < g_c.size)
-	{
-		g_c.c[i] = (char *)malloc(sizeof(char) * g_c.size);		
-		i++;
-	}
-	ft_addpoint();
-							ft_putendl("INITCUBE CUBE");
-							ft_printcube();
-}
-
-//Ajout d'une ligne au cube
-void 	ft_onemore()
-{
-	ft_putendl("onemore");
-	int i;
-	int j;
-	char **tmp;
-
-	tmp = g_c.c;
-	g_c.size += 1;
-	ft_initcube();
-	i = 0;
-	while (i < g_c.size - 1)
-	{
-		j = 0;
-		while (j < g_c.size - 1)
-		{
-			g_c.c[i][j] = tmp[i][j];
-			j++;
-		}
-		i++;
-	}
-}
-
-int main()
-{
-	g_c.size = 66;
-	ft_initcube();
-	ft_printcube();
-
-	ft_onemore();
-	ft_printcube();
-	ft_putendl("FIN");
-	return (0);	
+	return (0);
 }
