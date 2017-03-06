@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:09 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/03/06 02:28:05 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/03/06 06:33:47 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int 	checkstartend(char *ligne, int *i, int nbl)
 			return (0);
 	}
 	else if (i < (int *)ft_strlen(ligne) && nbl == 4)
-	{	//Check pour la premiere ligne (on enleve le check de la piece du dessous pour la meme raison)
+	{	//Check pour la dernieres ligne (on enleve le check de la piece du dessous pour la meme raison)
 		if (ligne[*i - 1] == '#' || ligne[*i + 1] == '#' || ligne[*i - 5] == '#')
 			return (1);
 		else
@@ -73,12 +73,12 @@ int 	checkforme(char *ligne)
 		if (ligne[i] == '#' && (ok = checkstartend(ligne, &i, nbl))
 			 && (nbl == 1 || nbl == 4))
 			i++;
-		else if (ligne[i] == '.')
+		else if (ligne[i] == '.' || ligne[i] == '\n')
 			i++;
 		if (ligne[i - 1] == '#' || ligne[i + 1] == '#' || 
 			ligne[i + 5] == '#' || ligne[i - 5] == '#')
 			i++;
-		if (i % 6 == 0)
+		if (ligne[i] == '\n')
 			nbl++;
 		if (nbl > 4)	//On remet nbl a 0 parce que la piece est finie.
 			nbl = 1;
@@ -119,9 +119,9 @@ int		check(char *lignenl)
 		return (0);
 }
 
-//Le main qui execute les checks
-//A al alimite, lui faire retourner le t-lst plutot qu'un int
-// et dans le main checker si le t-lst resultant est pas = a NULL.
+/*
+** Le main qui execute les checks
+*/
 int		maincheck(char *av)
 {
 	int 	ok;
@@ -135,7 +135,7 @@ int		maincheck(char *av)
 		{
 			lst = separe(ligne);
 			g_c.firstma = lst;
-			if ((ok = checkforme(strreplace(ligne, '\n', '.'))))
+			if ((ok = checkforme(ligne)))
 				return (1);
 		}
 	}
