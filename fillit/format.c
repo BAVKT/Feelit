@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:07 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/03/07 06:50:05 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/03/07 21:38:05 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,17 +85,17 @@ void 	ft_printcube()
 
 //A EFFACER
 //Affichage du cube tmp
-void 	ft_printcubetmp()
+void 	ft_printcubetmp(int size)
 {
 	ft_putendl("printcubeTMP");
 	int i;
 	int j;
 
 	i = 0;
-	while (i < g_c.size)
+	while (i < size)
 	{
 		j = 0;
-		while (j < g_c.size)
+		while (j < size)
 		{
 			ft_putchar(g_c.tmp[i][j]);
 			j++;
@@ -200,14 +200,14 @@ void	ft_cpcube()
 
 ft_putendl("*** AVANT1");
 ft_changecolor(RED);
-ft_printcubetmp();
+ft_printcubetmp(g_c.size - 1);
 ft_printcube();
 ft_resetcolor();
 	i = 0;
-	while (i < g_c.size)
+	while (i < g_c.size - 1)
 	{
 		j = 0;
-		while (j < g_c.size)
+		while (j < g_c.size - 1)
 		{
 			if (g_c.tmp[i][j] >= 'A' && g_c.tmp[i][j] <= 'Z')
 			g_c.c[i][j] = g_c.tmp[i][j];
@@ -217,7 +217,7 @@ ft_resetcolor();
 	}
 ft_putendl("*** APRES");
 ft_printcube();
-ft_printcubetmp();
+ft_printcubetmp(g_c.size - 1);
 }
 
 /*
@@ -228,9 +228,8 @@ void 	ft_onemore()
 	ft_putendl("onemore");
 	int i;
 
-			ft_printcubetmp();
+			ft_printcubetmp(g_c.size);
 			ft_printcube();
-	ft_cp(g_c.c, g_c.tmp);
 	i = 0;
 	while (i < g_c.size)
 		free(g_c.c[i++]);
