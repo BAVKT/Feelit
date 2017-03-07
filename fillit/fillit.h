@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/03/06 02:28:02 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/03/07 03:31:06 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,5 @@ void	ft_testordre(t_lst *lst);
 int		mainres(t_lst *lst);
 int		lenlst(t_lst *lst);
 void	upleft(t_lst *lst);
+void 	ft_initcube();
 #endif

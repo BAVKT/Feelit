@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:07 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/03/06 06:34:20 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/03/07 06:50:05 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,14 @@ void 	ft_printcube()
 		j = 0;
 		while (j < g_c.size)
 		{
+			ft_changecolor(CYAN);
 			ft_putchar(g_c.c[i][j]);
 			j++;
 		}
 		i++;
 		ft_putchar('\n');
 	}
+	ft_resetcolor();
 }
 
 //A EFFACER
@@ -126,44 +128,48 @@ void 	ft_printcubestock()
 }
 
 /*
-//Rempli de point
-void	ft_addpoint()
+** Pour copier un tableau dans l'autre. b = dest
+*/
+void	ft_cp(char **a, char **b)
 {
-	ft_putendl("addpoint");
 	int i;
 	int j;
 
 	i = 0;
-	while (i < g_c.size)
+	j = 0;
+	while (a[i][j])
 	{
 		j = 0;
-		while (j < g_c.size)
+		while (a[i][j])
 		{
-			if (g_c.c[i][j] != '.' || 
-				(g_c.c[i][j] < 'A' && g_c.c[i][j] > 'Z'))
-				g_c.c[i][j] = '.';
+			b[i][j] = a[i][j];
 			j++;
 		}
 		i++;
 	}
 }
-*/
 
 /*
 **Initialiation du cube et le rempli de points.
 */
 void 	ft_initcube()
 {
-	ft_putendl("inicube");
+	ft_putendl("initcube");
 	int i;
 	int j;
 
-	i = 0;
+/*
 	if (g_c.c)
 	{
-		ft_putendl("bli");
-		g_c.tmp = g_c.c;
-	}
+		ft_putendl("HAAAIIGGGGHHT");
+		ft_printcube();
+		ft_printcubetmp();
+		ft_cp(g_c.c, g_c.tmp);
+		ft_putendl("??????????????????????");
+		ft_printcube();
+		ft_printcubetmp();
+	}*/
+	i = 0;
 	g_c.c = (char **)malloc(sizeof(char *) * g_c.size);
 	while (i < g_c.size)
 	{
@@ -184,6 +190,37 @@ void 	ft_initcube()
 }
 
 /*
+**	Pour remettre les pieces dans le nouveau cube
+*/
+void	ft_cpcube()
+{
+	ft_putendl("***********************ft_cpcube");
+	int i;
+	int j;
+
+ft_putendl("*** AVANT1");
+ft_changecolor(RED);
+ft_printcubetmp();
+ft_printcube();
+ft_resetcolor();
+	i = 0;
+	while (i < g_c.size)
+	{
+		j = 0;
+		while (j < g_c.size)
+		{
+			if (g_c.tmp[i][j] >= 'A' && g_c.tmp[i][j] <= 'Z')
+			g_c.c[i][j] = g_c.tmp[i][j];
+			j++;
+		}
+		i++;
+	}
+ft_putendl("*** APRES");
+ft_printcube();
+ft_printcubetmp();
+}
+
+/*
 **Ajout d'une ligne au cube
 */
 void 	ft_onemore()
@@ -191,12 +228,16 @@ void 	ft_onemore()
 	ft_putendl("onemore");
 	int i;
 
+			ft_printcubetmp();
+			ft_printcube();
+	ft_cp(g_c.c, g_c.tmp);
 	i = 0;
 	while (i < g_c.size)
 		free(g_c.c[i++]);
 	free(g_c.c);
 	g_c.size += 1;
 	ft_initcube();
+	ft_cpcube();
 }
 
 /*
@@ -315,7 +356,7 @@ int 	ft_capasse(t_lst *lst)
 									ft_putendl("++ CAPASSE ");
 									ft_putendl("capasse piece = ");
 									ft_putendl(lst->piece);
-									ft_putstr("lst->ID = ");
+									ft_putstrcolor("lst->ID = ", MAGENTA);
 									ft_putcharendl(lst->id);
 									ft_printcube();
 	}
@@ -341,34 +382,18 @@ int 	reso(t_lst *lst)
 		ft_chercheplace();
 		if (ft_capasse(lst)) 		//Si la piece rentre on la place
 		{
-			ft_putendl("LA CEST PASSSEEEEEE");
+					ft_putendl("LA CEST PASSSEEEEEE");
 			lst->ok = 1;
 			nbok++;					//On incremente le nb de piece placees
 			lst = g_c.firstma;
 		}
-		if (lst->ok == 0)
-		{
-									ft_putendl("ON PASSEEE IIIICCCCCIIIIIIII");
-									ft_putendl("piece : ");
-									ft_putendl(lst->piece);
-									ft_putstr("Adresse maillon = ");
-									printf("%p", lst);
-									fflush(stdout);
-									ft_putchar('\n');
-									ft_putstr("lst->ID = ");
-									ft_putnbrendl(lst->id);
-									ft_putendl("if lst->ok AVANT");
-									ft_printcube();		
+		if (lst->ok == 0)	
 			rmpiece(lst);
-									ft_putendl("if lst->ok APRES");
-									ft_printcube();		
-		}
-		if (!lst->next && g_c.i >= g_c.size && g_c.j >= g_c.size) //Si y a plus d'autres maillons ni place
+		if (!lst->next && (g_c.i >= g_c.size - 1 || g_c.j >= g_c.size - 1)) //Si y a plus d'autres maillons ni place
 		{
 					ft_putendl("IF + ONEMORE + RESET OK");
-
-			ft_onemore();			//On agrandi le tableau
-			lst = g_c.firstma; 		//On retourne au debut de la liste.
+			ft_onemore();
+			lst = g_c.firstma;
 			ft_resetok(lst);
 			g_c.i = 0;
 			g_c.j = 0;
@@ -376,14 +401,14 @@ int 	reso(t_lst *lst)
 		}
 		else if (!lst->next)
 		{
-			ft_putendl("ELSE IF lst = firstma");
+					ft_putendl("ELSE IF lst = firstma");
 			g_c.i++;
 			g_c.j++;
 			lst = g_c.firstma;
 		}
 		else
 		{
-			ft_putendl("ELSE lst->next");
+					ft_putendl("ELSE lst->next");
 			lst = lst->next; 		//Sinon on passe à la prochaine piece
 		}
 	}
@@ -397,7 +422,6 @@ int 	reso(t_lst *lst)
 int 	ft_chercheplace()
 {
 	ft_putendl("chercheplace");
-
 	g_c.tmp = g_c.c;
 	while (g_c.tmp[g_c.i][g_c.j] != '.' && g_c.i < g_c.size && g_c.j <= g_c.size)
 	{
@@ -456,18 +480,9 @@ int		mainres(t_lst *lst)
 	g_c.i = 0;
 	g_c.j = 0;
 	g_c.len = lenlst(lst);
-									ft_putstr("g_c.len = ");
-									ft_putnbrendl(g_c.len);
-									ft_putendl("+4");
 	g_c.taillemin = ft_sqrt(g_c.len * 4);
-									ft_putstr("g_c.taillemin = ");
-									ft_putnbrendl(g_c.taillemin);
-									ft_putendl("+5");	
 	g_c.size = g_c.taillemin;
 	ft_initcube();
-									ft_putendl("Cube de depart : ");
-									ft_printcube();
-									ft_putendl("+6");
 	ft_resetok(lst);
 	if (reso(lst))
 	{
