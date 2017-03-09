@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/03/07 03:31:06 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/03/09 01:24:13 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct 		s_cube
 	int 			nbiter;
 	int 			len; 			//La longueur de la lst;
 	int 			taillemin; 		//LA taille minimum du cube;
+	int 			nbok;
 	t_lst 			*firstma;		//Le premier maillon
 }					t_cube;
 t_cube				g_c;
@@ -47,7 +48,7 @@ typedef struct 		s_stock
 }					t_stock;
 t_stock				g_stock;
 
-int		maincheck(char *av);
+int		maincheck(char **av, int fd);
 int 	checkforme(char *ligne);
 int		check(char *av);
 int 	checknl(char *lignenl);
@@ -64,5 +65,5 @@ void	ft_testordre(t_lst *lst);
 int		mainres(t_lst *lst);
 int		lenlst(t_lst *lst);
 void	upleft(t_lst *lst);
-void 	ft_initcube();
+char **	ft_initcube();
 #endif

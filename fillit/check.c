@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:09 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/03/06 06:33:47 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/03/08 05:56:12 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,24 +113,33 @@ int		check(char *lignenl)
 			diez++;
 		i++;
 	}
-	if (pt / diez == 3 && pt % diez == 0)
-		return (1);
-	else
+	if (i < 19)
 		return (0);
+	return ((pt / diez == 3 && pt % diez == 0) ? 1 : 0);
 }
 
 /*
 ** Le main qui execute les checks
 */
-int		maincheck(char *av)
+int		maincheck(char **av, int fd)
 {
 	int 	ok;
+	int 	nb;
 	char 	*ligne;
+	char 	buf[42];
 	t_lst 	*lst;
 
-	ligne = instr(av);
+	nb = 42;
+	fd = open(av[1], O_RDONLY);
+	ok = read(fd, buf, nb);
+	if (ok == -1)
+		return (-1);
+	ligne = instr(av[1]);
+	if (!ligne)
+		return (-1);
 	if ((ok = check(ligne)))
 	{
+	
 		if ((ok = checknl(ligne)))
 		{
 			lst = separe(ligne);
