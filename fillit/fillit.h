@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/03/09 01:24:13 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/03/22 15:26:14 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@
 typedef struct 		s_lst
 {
 	int 			ok; 			//Si on a deja essayé de la placer.
+	int 			nb;				//le numero de l'ordre auuel il a ete posé
 	char			piece[21]; 		//La str de la piece 
 	char			id; 			//La lettre
 	struct s_lst	*next; 			//Le prochain maillon
+	struct s_lst 	*prev;			//Le precedent maillon
 }					t_lst;
 
 //Le cube et ses index pour evier d'avoir a les passer en parametrs a chaque fois.
@@ -36,6 +38,7 @@ typedef struct 		s_cube
 	int 			len; 			//La longueur de la lst;
 	int 			taillemin; 		//LA taille minimum du cube;
 	int 			nbok;
+	t_lst			*lst; 			//Le maillon en cours
 	t_lst 			*firstma;		//Le premier maillon
 }					t_cube;
 t_cube				g_c;
@@ -53,17 +56,28 @@ int 	checkforme(char *ligne);
 int		check(char *av);
 int 	checknl(char *lignenl);
 int 	checkstartend(char *ligne, int *i, int nbl);
-char 	*strreplace(char *str, char c, char d);
-char	*instr(char	*av);
-t_lst	*separe(char *str);
-void	ft_rempid(t_lst *lst);
-void	ft_resetok(t_lst *lst);
-void	ft_isgud();
 int 	ft_capasse(t_lst *lst);
-int 	ft_chercheplace();
-void	ft_testordre(t_lst *lst);
+int 	resoplace();
+int 	resocheck();
+int		reso();
 int		mainres(t_lst *lst);
+char	**ft_initcube();
+void 	ft_setprev(t_lst *lst);
+void 	ft_rempid(t_lst *lst);
+void	ft_resetok(t_lst *lst);
+void 	ft_printcube(char **str, int size);
+void 	ft_onemore();
+void	ft_isgudcube();
+void	ft_isgudpiece();
+void	ft_fail();
 int		lenlst(t_lst *lst);
-void	upleft(t_lst *lst);
-char **	ft_initcube();
+t_lst	*separe(char *str);
+char	*instr(char	*av);
+char 	*strreplace(char *str, char c, char d);
+void	rmpiece(t_lst *lst);
+int 	ft_chercheplace();
+int 	ft_incr();
+int		ft_sqrt(int nb);
+int 	ft_fact(int nb);
+t_lst 	*ft_incrlst(t_lst *lst);
 #endif

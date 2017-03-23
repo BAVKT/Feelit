@@ -6,12 +6,15 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:09 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/03/08 05:56:15 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/03/23 21:14:08 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+/*
+** Main de fillit
+*/
 int		main(int ac, char **av)
 {
 	int		ok;

@@ -6,14 +6,11 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:09 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/03/08 05:56:12 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/03/22 22:10:47 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-
-#include <stdio.h>
 
 /*
 ** Check si les pieces sont bien séparées par un seul \n
