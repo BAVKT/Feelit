@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:09 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/03/22 22:10:47 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/04/06 16:52:54 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ int		maincheck(char **av, int fd)
 		if ((ok = checknl(ligne)))
 		{
 			lst = separe(ligne);
+			ft_rempid(g_c.firstma);
 			g_c.firstma = lst;
 			if ((ok = checkforme(ligne)))
 				return (1);

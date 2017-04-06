@@ -105,10 +105,11 @@ int 	resoplace()
 	return (ok);
 }
 
-// CETTE PARTIE QUI N'EST PLUS BONNE IL DOIT RETURN 0 DANS DAUTRES CAS
+// CETTE PARTIE QUI N'EST PLUS BONNE IL DOIT RETURN 0 DANS D'AUTRES CAS
 /*
 ** Deuxieme partie de reso
 */
+
 /*
 int 	resocheck()
 {
@@ -164,9 +165,25 @@ int 	reso()
 	{
 		if (resoplace() == 0)
 		{
+				ft_putstr("id = ");
+				ft_putcharendl(g_c.lst->id);
 			ft_fail();
 			if (g_c.lst->id == 'A' + g_c.len - 1)
+			{
+				ft_putnbr(g_c.nbok);
+				ft_putstr(" id = ");
+				ft_putchar(g_c.lst->id);
+				ft_putnbrendl(g_c.lst->nb);
+			/*	g_c.lst = g_c.firstma;
+				while (g_c.lst->nb != g_c.nbok && g_c.lst->next)
+				{
+					g_c.lst = g_c.lst->next;
+				ft_putstr(" id = ");
+				ft_putchar(g_c.lst->id);
+				ft_putnbrendl(g_c.lst->nb);	
+				}*/
 				ft_fail();
+			}
 		}
 		else
 		{

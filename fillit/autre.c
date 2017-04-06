@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:08 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/03/23 21:14:10 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/04/06 16:52:55 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int		lenlst(t_lst *lst)
 /*
 ** Place chaque pièces dans la str de la liste.
 */
+/*
 t_lst	*separe(char *str)
 {
 	t_lst	*lst;
@@ -97,6 +98,39 @@ t_lst	*separe(char *str)
 		i++;
 	}
 	lst->next = NULL;
+	return (g_c.firstma);
+}*/
+/*
+** Place chaque pièces dans la str de la liste.
+*/
+t_lst	*separe(char *str)
+{
+	t_lst	*lst;
+	int 	i;
+	int 	j;
+
+	i = 0;
+	j = 0;
+	lst = (t_lst *)malloc(sizeof(t_lst));
+	lst->next = NULL;
+	while(str[i])
+	{
+		if (!g_c.firstma)
+			g_c.firstma = lst;
+		if (j == 19 && i > 0 && i < (int)ft_strlen(str) - 19)
+		{
+			j = 0;
+			i++;
+			if ((lst->next = (t_lst *)malloc(sizeof(t_lst))))
+			{
+				lst = lst->next;
+				lst->next = NULL;
+			}
+		}
+		else
+			lst->piece[j++] = str[i];
+		i++;
+	}
 	return (g_c.firstma);
 }
 

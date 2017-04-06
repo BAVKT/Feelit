@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 14:18:25 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/03/23 21:14:11 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/04/06 16:52:54 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,26 @@
 ** Quand on arrive pas a rentrer la piece dans le cube
 ** Retire la piece actuelle et celle d'avant et avance d'une piece
 */
+/*
 void	ft_fail()
 {
 				ft_putendl("ft_fail");
 										ft_putendl("RESOPLAC A ECHOUE DAMN");
 	//g_c.nbok--;
+				ft_putnbr(g_c.nbok);
+				ft_putstr(" id = ");
+				ft_putchar(g_c.lst->id);
+				ft_putnbrendl(g_c.lst->nb);
 	rmpiece(g_c.lst);
 	g_c.lst->ok = 0;
 	g_c.lst->nb = 0;
 	g_c.lst = g_c.firstma;
 	while (g_c.lst->nb != g_c.nbok)
 		g_c.lst = g_c.lst->next;
+				ft_putnbr(g_c.nbok);
+				ft_putstr(" id = ");
+				ft_putchar(g_c.lst->id);
+				ft_putnbrendl(g_c.lst->nb);
 	rmpiece(g_c.lst);
 	g_c.nbok--;
 	g_c.lst->ok = 0;
@@ -34,6 +43,59 @@ void	ft_fail()
 	g_c.lst = ft_incrlst(g_c.lst);
 	g_c.i = 0;
 	g_c.j = 0;
+}*/
+
+void	ft_fail()
+{
+				ft_putendl("ft_fail");
+										ft_putendl("RESOPLAC A ECHOUE DAMN");
+	g_c.lst = g_c.firstma;
+	while (g_c.lst->nb != g_c.nbok)
+		g_c.lst = g_c.lst->next;
+				ft_putstr("g_c.nbok = ");
+				ft_putnbrendl(g_c.nbok);
+				ft_putstr("g_c.lst->nb = ");
+				ft_putnbrendl(g_c.lst->nb);
+				ft_putstr("g_c.lst->id = ");
+				ft_putcharendl(g_c.lst->id);
+	if (g_c.lst->ok == 1)
+		g_c.nbok--;
+	rmpiece(g_c.lst);
+	g_c.lst->ok = 0;
+	g_c.lst->nb = 0;
+	if (g_c.lst->id == 'A' + g_c.len - 1)
+	{
+				ft_putstr("g_c.nbok = ");
+				ft_putnbrendl(g_c.nbok);
+				ft_putendl("AAAAAAAAAAAAAHHHHHHHHHH");
+		g_c.lst = g_c.firstma;
+		while (g_c.lst->nb != g_c.nbok)
+		{
+				ft_putstr("g_c.lst->id = ");
+				ft_putchar(g_c.lst->id);
+				ft_putnbrendl(g_c.lst->nb);
+			g_c.lst = g_c.lst->next;
+		}
+				ft_putstr("g_c.nbok = ");
+				ft_putnbrendl(g_c.nbok);
+				ft_putstr("g_c.lst->nb = ");
+				ft_putnbrendl(g_c.lst->nb);
+				ft_putstr("g_c.lst->id = ");
+				ft_putcharendl(g_c.lst->id);
+		rmpiece(g_c.lst);
+		g_c.nbok--;
+		g_c.lst->ok = 0;
+		g_c.lst->nb = 0;
+	}
+		g_c.lst = ft_incrlst(g_c.lst);
+	g_c.i = 0;
+	g_c.j = 0;
+				ft_putstr("g_c.nbok = ");
+				ft_putnbrendl(g_c.nbok);
+				ft_putstr("g_c.lst->nb = ");
+				ft_putnbrendl(g_c.lst->nb);
+				ft_putstr("g_c.lst->id = ");
+				ft_putcharendl(g_c.lst->id);
 }
 
 /*
