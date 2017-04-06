@@ -29,23 +29,15 @@ int 	ft_capasse(t_lst *lst)
 	i = g_c.i;
 	j = g_c.j;
 	g_c.tmp = g_c.c;
-		ft_putstr("lst->ok = ");
-		ft_putnbrendl(lst->ok);
-		ft_putstr("lst->id = ");
-		ft_putcharendl(lst->id);
 	while (lst->piece[k] && nb < 4 && lst->ok == 0)
 	{
 		if (lst->piece[k] == '#')
 		{
-									ft_putendl("++ CAPASSE ");
-									ft_putendl("capasse piece = ");
-									ft_putendl(lst->piece);
-									ft_putstr("lst->ID = ");
-									ft_putcharendl(lst->id);
-					ft_putstr("CAPASSE 2 g_c.i = ");
-					ft_putnbrendl(g_c.i);
-					ft_putstr("CAPASSE 2 g_c.j = ");
-					ft_putnbrendl(g_c.j);
+									ft_putstr("nbok = ");
+									ft_putnbr(g_c.nbok);
+									ft_putstr(" | id = ");
+									ft_putchar(lst->id);
+									ft_putnbrendl(lst->nb);
 									ft_printcube(g_c.c, g_c.size);
 			if (i + (k / 5) >= g_c.size || j + (k % 5) >= g_c.size ||
 				g_c.tmp[i + (k / 5)][j + (k % 5)] != '.')
@@ -82,10 +74,8 @@ int 	resoplace()
 		ok = ft_capasse(g_c.lst);
 		if (ok == 0)
 		{
+						ft_putendl("capasse == 0");
 			rmpiece(g_c.lst);
-						ft_putendl("FT-CAPASSE == 0");
-			//if (!resocheck())
-			//	return (0);
 			if (g_c.i + 1 >= g_c.size && g_c.j >= g_c.size)
 			{
 				ft_onemore();
@@ -168,7 +158,7 @@ int 	reso()
 				ft_putstr("id = ");
 				ft_putcharendl(g_c.lst->id);
 			ft_fail();
-			if (g_c.lst->id == 'A' + g_c.len - 1)
+			if (g_c.lst->id == 'A' + g_c.len - 1 && g_c.lst->ok)
 			{
 				ft_putnbr(g_c.nbok);
 				ft_putstr(" id = ");
@@ -210,12 +200,26 @@ int		mainres(t_lst *lst)
 	g_c.i = 0;
 	g_c.j = 0;
 	g_c.len = lenlst(g_c.lst);
+					ft_putstr("g_c.len = ");
+					ft_putnbrendl(g_c.len);
 	g_c.taillemin = ft_sqrt(g_c.len * 4);
 	g_c.size = g_c.taillemin;
 	g_c.c = ft_initcube();
 	g_c.tmp = ft_initcube();
 	ft_setprev(g_c.lst);
 	ft_resetok(g_c.lst);
+				ft_putstr(" id = ");
+				ft_putcharendl(lst->id);
+			while (lst->next)
+			{
+				lst = lst->next;
+				ft_putstr(" id = ");
+				ft_putcharendl(lst->id);
+			}
 	reso();
+			ft_putstr("g_c.nbok = ");
+			ft_putnbrendl(g_c.nbok);
+			ft_putstr("g_c.len = ");
+			ft_putnbrendl(g_c.len);
 	return (1);
 }

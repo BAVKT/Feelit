@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 14:18:25 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/04/06 16:52:54 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/04/06 17:31:51 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,12 @@ void	ft_fail()
 				ft_putstr("g_c.lst->id = ");
 				ft_putcharendl(g_c.lst->id);
 	if (g_c.lst->ok == 1)
+	{
 		g_c.nbok--;
-	rmpiece(g_c.lst);
-	g_c.lst->ok = 0;
-	g_c.lst->nb = 0;
+		rmpiece(g_c.lst);
+		g_c.lst->ok = 0;
+		g_c.lst->nb = 0;
+	}
 	if (g_c.lst->id == 'A' + g_c.len - 1)
 	{
 				ft_putstr("g_c.nbok = ");

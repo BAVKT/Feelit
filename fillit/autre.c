@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:08 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/04/06 16:52:55 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/04/06 17:19:49 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		lenlst(t_lst *lst)
 {
 	int nb;
 
-	nb = 0;
+	nb = 1; 				//Valeur passée a 1 au lieu de 0
 	if (!lst)
 		return (0);
 	while (lst->next)
@@ -66,40 +66,6 @@ int		lenlst(t_lst *lst)
 	return (nb);
 }
 
-/*
-** Place chaque pièces dans la str de la liste.
-*/
-/*
-t_lst	*separe(char *str)
-{
-	t_lst	*lst;
-	int 	i;
-	int 	j;
-	int 	k;
-
-	i = 0;
-	j = 0;
-	k = 0;
-	lst = (t_lst *)malloc(sizeof(t_lst));
-	while(str[i])
-	{
-		if (!g_c.firstma)
-			g_c.firstma = lst;
-		if (j == 19 && i > 0)
-		{
-			j = 0;
-			i++;
-			lst->id = 'A' + k++;
-			lst->next = (t_lst *)malloc(sizeof(t_lst));
-			lst = lst->next;
-		}
-		else
-			lst->piece[j++] = str[i];
-		i++;
-	}
-	lst->next = NULL;
-	return (g_c.firstma);
-}*/
 /*
 ** Place chaque pièces dans la str de la liste.
 */

@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 14:21:44 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/04/06 16:52:57 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/04/06 17:23:14 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,8 @@ int 	ft_chercheplace()
 
 	while (g_c.tmp[g_c.i][g_c.j] != '.' && g_c.i < g_c.size && g_c.j <= g_c.size)
 	{
-			ft_putendl("chcplc");
 			if (ft_incr() == 0)
-			{
-					ft_putendl("HORGH");
 				return (0);
-			}
 	}
 	return (1);
 }
@@ -38,32 +34,32 @@ int 	ft_incr()
 {
 	ft_putendl("ft_incr");
 	
-			ft_putstr("g_c.i = ");
-			ft_putnbrendl(g_c.i);
-			ft_putstr("g_c.j = ");
-			ft_putnbrendl(g_c.j);
+			//ft_putstr("g_c.i = ");
+			//ft_putnbrendl(g_c.i);
+			//ft_putstr("g_c.j = ");
+			//ft_putnbrendl(g_c.j);
 	if (g_c.i + 1 >= g_c.size && g_c.j >= g_c.size)
 	{
-					ft_putendl("YAGYAGYAGYA");
+					//ft_putendl("YAGYAGYAGYA");
 		//g_c.i = 0;
 		//g_c.j = 0;
 		return (0);
 	}
 	else if (g_c.j + 1 <= g_c.size)
 	{
-					ft_putendl("YUGYUGYUGYU");	
+					//ft_putendl("YUGYUGYUGYU");	
 		g_c.j++;
 	}
 	else
 	{
-					ft_putendl("YOGYOGYOGYO");	
+					//ft_putendl("YOGYOGYOGYO");	
 		g_c.i++;
 		g_c.j = 0;
 	}
-			ft_putstr("g_c.i = ");
-			ft_putnbrendl(g_c.i);
-			ft_putstr("g_c.j = ");
-			ft_putnbrendl(g_c.j);
+		//ft_putstr("g_c.i = ");
+		//ft_putnbrendl(g_c.i);
+		//ft_putstr("g_c.j = ");
+		//ft_putnbrendl(g_c.j);
 	return (1);
 }
 
