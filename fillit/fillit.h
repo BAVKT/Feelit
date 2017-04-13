@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/03/22 15:26:14 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/04/13 15:36:26 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct 		s_cube
 	int 			len; 			//La longueur de la lst;
 	int 			taillemin; 		//LA taille minimum du cube;
 	int 			nbok;
+	char			last;			//La derniere lettre de la chaine
 	t_lst			*lst; 			//Le maillon en cours
 	t_lst 			*firstma;		//Le premier maillon
 }					t_cube;

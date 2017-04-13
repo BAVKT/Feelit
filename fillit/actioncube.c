@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 14:18:25 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/04/06 17:31:51 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/04/13 15:16:04 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,55 @@ void	ft_fail()
 	g_c.j = 0;
 }*/
 
+/*
+** Pour savoir si il reste des pièces non posées après la piece actuelle
+*/
+int		ft_lastok()
+{
+				ft_putendl("ft_lastok");
+	t_lst *tmp;
+
+	g_c.lst = g_c.firstma;
+	while (g_c.lst->nb != g_c.nbok)
+		g_c.lst = g_c.lst->next;
+	tmp = g_c.lst;
+				ft_putstr("g_c.lst->id = ");
+				ft_putcharendl(g_c.lst->id);
+	while (g_c.lst->ok == 1 && g_c.lst->id != 'A' + g_c.len - 1)
+	{
+				ft_putendl("hooo");
+		if (!g_c.lst->next)
+		{
+			g_c.lst = tmp;
+			return (1);
+		}
+		g_c.lst = g_c.lst->next;
+	}
+				ft_putstr("g_c.lst->id2 = ");
+				ft_putcharendl(g_c.lst->id);
+	if (g_c.lst->ok == 0)
+	{
+				ft_putendl("lol nope");
+		g_c.lst = tmp;
+		return(0);
+	}
+		g_c.lst = tmp;
+				ft_putendl("YEAH");
+	return (1);
+}
+
 void	ft_fail()
 {
 				ft_putendl("ft_fail");
-										ft_putendl("RESOPLAC A ECHOUE DAMN");
+										ft_putendl("RESOPLACE A ECHOUE DAMN");
 	g_c.lst = g_c.firstma;
 	while (g_c.lst->nb != g_c.nbok)
 		g_c.lst = g_c.lst->next;
 				ft_putstr("g_c.nbok = ");
 				ft_putnbrendl(g_c.nbok);
-				ft_putstr("g_c.lst->nb = ");
-				ft_putnbrendl(g_c.lst->nb);
 				ft_putstr("g_c.lst->id = ");
-				ft_putcharendl(g_c.lst->id);
+				ft_putchar(g_c.lst->id);
+				ft_putnbrendl(g_c.lst->nb);
 	if (g_c.lst->ok == 1)
 	{
 		g_c.nbok--;
@@ -65,6 +101,9 @@ void	ft_fail()
 		g_c.lst->ok = 0;
 		g_c.lst->nb = 0;
 	}
+/*	g_c.lst = g_c.firstma;
+	while (g_c.lst->nb != g_c.nbok)
+		g_c.lst = g_c.lst->next;*/
 	if (g_c.lst->id == 'A' + g_c.len - 1)
 	{
 				ft_putstr("g_c.nbok = ");
@@ -89,6 +128,9 @@ void	ft_fail()
 		g_c.lst->ok = 0;
 		g_c.lst->nb = 0;
 	}
+	if (g_c.lst->next)
+		g_c.lst = g_c.lst->next;
+	if (g_c.lst->ok != 0)
 		g_c.lst = ft_incrlst(g_c.lst);
 	g_c.i = 0;
 	g_c.j = 0;

@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:08 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/04/06 17:19:49 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/04/12 17:16:35 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ char	*instr(char	*av)
 	}
 	close(fd);
 	ligne = (char *)malloc(sizeof(char) * (size + 1));
-	ligne[size + 1] = '\0';
+	ligne[size] = '\0';
 	fd = open(av, O_RDONLY);
 	while ((ret = read(fd, buf, 41)))
 	{

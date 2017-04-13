@@ -76,7 +76,7 @@ int 	resoplace()
 		{
 						ft_putendl("capasse == 0");
 			rmpiece(g_c.lst);
-			if (g_c.i + 1 >= g_c.size && g_c.j >= g_c.size)
+			if (g_c.i + 1 >= g_c.size && g_c.j + 1 >= g_c.size && g_c.tmp[0][0] == g_c.last)
 			{
 				ft_onemore();
 				g_c.lst = g_c.firstma;
@@ -200,6 +200,7 @@ int		mainres(t_lst *lst)
 	g_c.i = 0;
 	g_c.j = 0;
 	g_c.len = lenlst(g_c.lst);
+	g_c.last = 'A' + g_c.len - 1;
 					ft_putstr("g_c.len = ");
 					ft_putnbrendl(g_c.len);
 	g_c.taillemin = ft_sqrt(g_c.len * 4);
