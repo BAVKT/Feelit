@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 14:18:25 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/04/13 15:16:04 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/04/21 19:50:50 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,28 @@ void	ft_fail()
 	g_c.i = 0;
 	g_c.j = 0;
 }*/
+/*
+void	ft_rmlastok()
+{
+		ft_putendl("ft_tmlastok");
+	t_lst *tmp;
+
+	tmp = g_c.lst;
+	while(g_c.lst->id != g_c.last)
+	{
+		g_c.nbok--;
+		rmpiece(g_c.lst);
+		g_c.lst->ok = 0;
+		g_c.lst->nb = 0;
+		g_c.lst = ft_incrlst(g_c.lst);	
+	}
+}
+*/
 
 /*
 ** Pour savoir si il reste des pièces non posées après la piece actuelle
 */
+/*
 int		ft_lastok()
 {
 				ft_putendl("ft_lastok");
@@ -81,11 +99,84 @@ int		ft_lastok()
 				ft_putendl("YEAH");
 	return (1);
 }
+*/
+
+int		ft_cmpalpha(char *s)
+{
+				ft_putendl("ft_cmpalpha");
+	t_lstalpha	*tmp;
+
+	tmp = g_c.firstalpha;
+	while (tmp)
+	{
+					ft_putstr("tmp->str = ");
+					ft_putendl(tmp->str);
+					ft_putstr("s = ");
+					ft_putendl(s);
+					ft_putnbrendl(ft_strcmp(tmp->str, s));
+		if (ft_strcmp(tmp->str, s) == 0)	//Si il existe deja
+			return (1);
+		if (tmp->next)
+		{
+					ft_putendl("AOHOHOHOHOH");
+			tmp = tmp->next;
+		}
+		else
+			break ;
+					ft_putendl("HAAAASDASDASD");
+	}
+	g_c.alpha->str = ft_strdup((const char *)s);
+	g_c.alpha->next = NULL;
+	g_c.alpha = g_c.alpha->next;
+	return (0);
+}
+
+int 	ft_rempalpha()
+{
+					ft_putendl("ft_rempalpha");	
+	t_lst	*tmp;
+	char	*s;
+	int		i;
+
+	i = 0;
+	tmp = g_c.firstma;
+	g_c.alpha = g_c.firstalpha;
+	while (g_c.alpha->next)
+	{
+					ft_putendl("yo");
+					ft_putendl(g_c.alpha->str);
+		g_c.alpha = g_c.alpha->next;
+	}
+	if ((g_c.alpha->next = (t_lstalpha *)malloc(sizeof(t_lstalpha))))
+	{
+					ft_putendl("rrrr");
+		s = (char *)malloc(sizeof(char) * g_c.nbok + 1);
+		while (i <= g_c.nbok)
+		{
+			s[i] = tmp->id;
+			i++;
+			if (tmp->next)
+				tmp = tmp->next;
+			else
+				break ;
+		}
+		s[i] = '\0';
+		if (ft_cmpalpha(s) == 0)
+		{
+			free(s);
+			return (1);
+		}
+		free(s);
+	}
+	return (0);
+}
 
 void	ft_fail()
 {
-				ft_putendl("ft_fail");
-										ft_putendl("RESOPLACE A ECHOUE DAMN");
+			ft_putendl("ft_fail");
+	int			ok;
+
+	ok = g_c.nbok;
 	g_c.lst = g_c.firstma;
 	while (g_c.lst->nb != g_c.nbok)
 		g_c.lst = g_c.lst->next;
@@ -101,14 +192,13 @@ void	ft_fail()
 		g_c.lst->ok = 0;
 		g_c.lst->nb = 0;
 	}
-/*	g_c.lst = g_c.firstma;
+/*
+	g_c.lst = g_c.firstma;
 	while (g_c.lst->nb != g_c.nbok)
-		g_c.lst = g_c.lst->next;*/
+		g_c.lst = g_c.lst->next;
+*/
 	if (g_c.lst->id == 'A' + g_c.len - 1)
 	{
-				ft_putstr("g_c.nbok = ");
-				ft_putnbrendl(g_c.nbok);
-				ft_putendl("AAAAAAAAAAAAAHHHHHHHHHH");
 		g_c.lst = g_c.firstma;
 		while (g_c.lst->nb != g_c.nbok)
 		{
@@ -128,7 +218,7 @@ void	ft_fail()
 		g_c.lst->ok = 0;
 		g_c.lst->nb = 0;
 	}
-	if (g_c.lst->next)
+	if (g_c.lst->next /*&& g_c.nbok > 0*/)
 		g_c.lst = g_c.lst->next;
 	if (g_c.lst->ok != 0)
 		g_c.lst = ft_incrlst(g_c.lst);

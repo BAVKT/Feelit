@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 14:21:44 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/04/06 18:35:18 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/04/13 15:45:28 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int 	ft_incr()
 */
 t_lst 	*ft_incrlst(t_lst *lst)
 {
+	ft_putendl("ft_incrlst");
 	if (lst->id == 'A' + g_c.len - 1)
 		lst = g_c.firstma;
 	else if (lst->id == 'A' && g_c.nbok > 0)

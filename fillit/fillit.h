@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/04/13 15:36:26 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/04/21 16:42:47 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define __FILLIT_H
 #include "libft.h"
 #include <fcntl.h>
-
 
 typedef struct 		s_lst
 {
@@ -26,6 +25,12 @@ typedef struct 		s_lst
 	struct s_lst 	*prev;			//Le precedent maillon
 }					t_lst;
 
+typedef struct 			s_lstalpha
+{
+	char 				*str;			//Contient l'alphabet
+	struct s_lstalpha	*next;
+}						t_lstalpha;
+
 //Le cube et ses index pour evier d'avoir a les passer en parametrs a chaque fois.
 typedef struct 		s_cube
 {
@@ -36,19 +41,22 @@ typedef struct 		s_cube
 	int 			size; 			//La taille du cube
 	int 			nbiter;
 	int 			len; 			//La longueur de la lst;
-	int 			taillemin; 		//LA taille minimum du cube;
+	int 			taillemin; 		//La taille minimum du cube;
 	int 			nbok;
 	char			last;			//La derniere lettre de la chaine
 	t_lst			*lst; 			//Le maillon en cours
 	t_lst 			*firstma;		//Le premier maillon
+	t_lstalpha		*alpha;
+	t_lstalpha		*firstalpha;	//Le premier maillon de lstalpha
 }					t_cube;
 t_cube				g_c;
+
 
 //Pour ranger la forme la plus petite trouvee
 typedef struct 		s_stock
 {
-	int		size;
-	char	**bestcube;
+	int				size;
+	char			**bestcube;
 }					t_stock;
 t_stock				g_stock;
 
@@ -81,4 +89,8 @@ int 	ft_incr();
 int		ft_sqrt(int nb);
 int 	ft_fact(int nb);
 t_lst 	*ft_incrlst(t_lst *lst);
+int		ft_lastok();
+void	ft_rmlastok();
+int 	ft_rempalpha();
+int		ft_cmpalpha(char *s);
 #endif

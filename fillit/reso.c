@@ -84,7 +84,7 @@ int 	resoplace()
 				g_c.i = 0;
 				g_c.j = 0;
 				g_c.nbok = 0;
-				return (0);
+				return (1);
 			}
 		}
 		if (!ft_incr())
@@ -95,59 +95,10 @@ int 	resoplace()
 	return (ok);
 }
 
-// CETTE PARTIE QUI N'EST PLUS BONNE IL DOIT RETURN 0 DANS D'AUTRES CAS
-/*
-** Deuxieme partie de reso
-*/
-
-/*
-int 	resocheck()
-{
-	ft_putendl("resocheck");
-						ft_putstr("g_c.i = ");
-						ft_putnbrendl(g_c.i + 1);
-						ft_putstr("g_c.j = ");
-						ft_putnbrendl(g_c.j);
-						ft_putstr("g_c.size = ");
-						ft_putnbrendl(g_c.size);
-						ft_putstr("g_c.c[0][0] = ");
-						ft_putcharendl(g_c.c[0][0]);
-						ft_putstr("'A' + g_c.len - 1 = ");
-						ft_putcharendl('A' + g_c.len - 1);
-						ft_putstr("g_c.lst->id = ");
-						ft_putcharendl(g_c.lst->id);
-						if (g_c.lst->id == 'A' + g_c.len - 1)
-							ft_putendl("PAS DE NEXT");
-						else 
-							ft_putendl("NIK TOI BIEN");
-	if (g_c.lst->id == 'A' + g_c.len - 1 && g_c.i + 1 >= g_c.size && g_c.j >= g_c.size && g_c.c[0][0] == 'A' + g_c.len - 1)
-	{
-				ft_putendl("IF + ONEMORE + RESET OK");
-		ft_onemore();
-		g_c.lst = g_c.firstma;
-		ft_resetok(g_c.lst);
-		g_c.i = 0;
-		g_c.j = 0;
-		g_c.nbok = 0;
-	}
-	else if (g_c.lst->id == 'A' + g_c.len - 1 && g_c.i + 1 >= g_c.size && g_c.j >= g_c.size)
-		return (0);
-	else if (g_c.i + 1 >= g_c.size && g_c.j >= g_c.size && g_c.lst->next)
-	{
-				ft_putendl("ELSE g_c.lst->next");
-		g_c.lst = ft_incrlst(g_c.lst);
-				ft_putstr("g_c.lst->id = ");
-				ft_putcharendl(g_c.lst->id);
-		g_c.i = 0;
-		g_c.j = 0;
-	}
-		ft_putendl("Le return (1)");
-	return (1);
-}
-*/
 /*
 ** La resolution
 */
+/*
 int 	reso()
 {
 	ft_putendl("reso");
@@ -155,25 +106,10 @@ int 	reso()
 	{
 		if (resoplace() == 0)
 		{
-				ft_putstr("id = ");
-				ft_putcharendl(g_c.lst->id);
-			ft_fail();
-			if (g_c.lst->id == 'A' + g_c.len - 1 && g_c.lst->ok)
-			{
-				ft_putnbr(g_c.nbok);
-				ft_putstr(" id = ");
-				ft_putchar(g_c.lst->id);
-				ft_putnbrendl(g_c.lst->nb);
-			/*	g_c.lst = g_c.firstma;
-				while (g_c.lst->nb != g_c.nbok && g_c.lst->next)
-				{
-					g_c.lst = g_c.lst->next;
-				ft_putstr(" id = ");
-				ft_putchar(g_c.lst->id);
-				ft_putnbrendl(g_c.lst->nb);	
-				}*/
+			if (ft_lastok())
+				ft_rmlastok();
+			else
 				ft_fail();
-			}
 		}
 		else
 		{
@@ -181,8 +117,39 @@ int 	reso()
 			if (g_c.nbok >= g_c.len)
 				return(1);
 			g_c.lst = g_c.firstma;
-			g_c.lst = ft_incrlst(g_c.lst);
+			if (g_c.lst->ok == 1)
+				g_c.lst = ft_incrlst(g_c.lst);
 			reso(g_c.lst);
+		}
+	}
+	return (1);
+}
+*/
+
+/*
+** La resolution
+*/
+int 	reso()
+{
+	ft_putendl("reso");
+	while (g_c.nbok < g_c.len)
+	{
+		if (resoplace() == 0)
+		{
+				ft_putstr("id = ");
+				ft_putcharendl(g_c.lst->id);
+			ft_rempalpha();
+			ft_fail();
+		}
+		else
+		{
+			ft_putendl("yo");
+			if (g_c.nbok >= g_c.len)
+				return(1);
+			g_c.lst = g_c.firstma;
+			if (g_c.lst->ok == 1)
+				g_c.lst = ft_incrlst(g_c.lst);
+			reso();
 		}
 	}
 	return (1);
@@ -194,6 +161,7 @@ int 	reso()
 int		mainres(t_lst *lst)
 {
 	ft_putendl("mainres");
+	t_lstalpha	*lstalpha;
 
 	g_c.lst = lst;
 	g_c.nbok = 0;
@@ -207,6 +175,12 @@ int		mainres(t_lst *lst)
 	g_c.size = g_c.taillemin;
 	g_c.c = ft_initcube();
 	g_c.tmp = ft_initcube();
+	lstalpha = (t_lstalpha *)malloc(sizeof(t_lstalpha));
+	lstalpha->next = NULL;
+	lstalpha->str = ft_strnew(5);
+	lstalpha->str = "AAAA";	
+	g_c.firstalpha = lstalpha;
+	g_c.alpha = g_c.firstalpha;
 	ft_setprev(g_c.lst);
 	ft_resetok(g_c.lst);
 				ft_putstr(" id = ");
