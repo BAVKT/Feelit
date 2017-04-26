@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 14:18:25 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/04/21 19:50:50 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/04/26 20:35:39 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,22 +143,30 @@ int 	ft_rempalpha()
 	g_c.alpha = g_c.firstalpha;
 	while (g_c.alpha->next)
 	{
-					ft_putendl("yo");
 					ft_putendl(g_c.alpha->str);
 		g_c.alpha = g_c.alpha->next;
 	}
 	if ((g_c.alpha->next = (t_lstalpha *)malloc(sizeof(t_lstalpha))))
 	{
+		g_c.alpha = g_c.alpha->next;
+		g_c.alpha->next = NULL;
+		g_c.alpha->str = ft_strnew(5);
 					ft_putendl("rrrr");
+					ft_putnbrendl(i);
 		s = (char *)malloc(sizeof(char) * g_c.nbok + 1);
 		while (i <= g_c.nbok)
 		{
+							ft_putendl("pooo");
 			s[i] = tmp->id;
+			while (tmp->nb != i)
+			{
+							ft_putendl("iiiu");
+				if (tmp->next)
+					tmp = tmp->next;
+				else 
+					tmp = g_c.firstma;
+			}
 			i++;
-			if (tmp->next)
-				tmp = tmp->next;
-			else
-				break ;
 		}
 		s[i] = '\0';
 		if (ft_cmpalpha(s) == 0)
@@ -187,8 +195,8 @@ void	ft_fail()
 				ft_putnbrendl(g_c.lst->nb);
 	if (g_c.lst->ok == 1)
 	{
-		g_c.nbok--;
 		rmpiece(g_c.lst);
+		g_c.nbok--;
 		g_c.lst->ok = 0;
 		g_c.lst->nb = 0;
 	}

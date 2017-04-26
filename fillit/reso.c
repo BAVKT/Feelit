@@ -138,7 +138,8 @@ int 	reso()
 		{
 				ft_putstr("id = ");
 				ft_putcharendl(g_c.lst->id);
-			ft_rempalpha();
+			if (!ft_rempalpha())
+				ft_fail();
 			ft_fail();
 		}
 		else
@@ -161,7 +162,6 @@ int 	reso()
 int		mainres(t_lst *lst)
 {
 	ft_putendl("mainres");
-	t_lstalpha	*lstalpha;
 
 	g_c.lst = lst;
 	g_c.nbok = 0;
@@ -175,11 +175,10 @@ int		mainres(t_lst *lst)
 	g_c.size = g_c.taillemin;
 	g_c.c = ft_initcube();
 	g_c.tmp = ft_initcube();
-	lstalpha = (t_lstalpha *)malloc(sizeof(t_lstalpha));
-	lstalpha->next = NULL;
-	lstalpha->str = ft_strnew(5);
-	lstalpha->str = "AAAA";	
-	g_c.firstalpha = lstalpha;
+	g_c.firstalpha = (t_lstalpha *)malloc(sizeof(t_lstalpha));
+	g_c.firstalpha->next = NULL;
+	g_c.firstalpha->str = ft_strnew(5);
+	g_c.firstalpha->str = "AAAA";
 	g_c.alpha = g_c.firstalpha;
 	ft_setprev(g_c.lst);
 	ft_resetok(g_c.lst);

@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:09 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/04/06 17:45:58 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/04/26 16:11:02 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,28 @@ int 	checknl(char *lignenl)
 */
 int 	checkstartend(char *ligne, int *i, int nbl)
 {
+	ft_putendl("checkstartend");
 	if (*i > 1 && nbl == 1)
 	{	//Check pour la premiere ligne (on enleve le check de la piece du dessus parce qu'il y en aura jamais)
 		if (ligne[*i - 1] == '#' || ligne[*i + 1] == '#' || ligne[*i + 5] == '#')
 			return (1);
 		else
+		{
+			ft_putstr("01 - carac : ");
+			ft_putnbrendl(*i);
 			return (0);
+		}
 	}
 	else if (i < (int *)ft_strlen(ligne) && nbl == 4)
 	{	//Check pour la dernieres ligne (on enleve le check de la piece du dessous pour la meme raison)
 		if (ligne[*i - 1] == '#' || ligne[*i + 1] == '#' || ligne[*i - 5] == '#')
 			return (1);
 		else
+		{
+			ft_putstr("02 - caracterre : ");
+			ft_putnbrendl(*i);
 			return (0);
+		}
 	}
 	return (1);
 }
@@ -58,6 +67,7 @@ int 	checkstartend(char *ligne, int *i, int nbl)
 */
 int 	checkforme(char *ligne)
 {
+	ft_putendl("checkforme");
 	int 	i;
 	int 	nbl;	//Nombre de ligne
 	int		ok;
@@ -66,19 +76,20 @@ int 	checkforme(char *ligne)
 	nbl = 1;
 	ok = 1;
 	while (ligne[i])
-	{ 	//Chaque fois qu'on tombe sur un # on test si il touche bien un autre #
+	{
 		if (ligne[i] == '#' && (ok = checkstartend(ligne, &i, nbl))
 			 && (nbl == 1 || nbl == 4))
 			i++;
-		else if (ligne[i] == '.' || ligne[i] == '\n')
+		else if (ligne[i] == '.')
 			i++;
-		if (ligne[i - 1] == '#' || ligne[i + 1] == '#' || 
-			ligne[i + 5] == '#' || ligne[i - 5] == '#')
+		else if (ligne[i] == '\n')
+		{
+			ligne[i - 1] == '\n' ? nbl = 1 : nbl++;
 			i++;
-		if (ligne[i] == '\n')
-			nbl++;
-		if (nbl > 4)	//On remet nbl a 0 parce que la piece est finie.
-			nbl = 1;
+		}
+		else if (ligne[i - 1] == '#' || ligne[i + 1] == '#' || 
+				ligne[i + 5] == '#' || ligne[i - 5] == '#')
+			i++;
 		if (ok == 0) 	//On verifie que ok soit toujours = 1 sinon ca veut dire qu'il y a erreur
 			return (0);
 	}
@@ -97,7 +108,7 @@ int		check(char *lignenl)
 	i = 0;
 	pt = 0;
 	diez = 0;
-	while (lignenl[i] != '\0')
+	while (lignenl[i] != '\0') 
 	{
 		if (lignenl[i] != '\n' && lignenl[i] != '.' && lignenl[i] != '#')
 			return (0);

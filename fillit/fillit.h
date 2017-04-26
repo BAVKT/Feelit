@@ -18,7 +18,7 @@
 typedef struct 		s_lst
 {
 	int 			ok; 			//Si on a deja essayé de la placer.
-	int 			nb;				//le numero de l'ordre auuel il a ete posé
+	int 			nb;				//le numero de l'ordre auquel il a ete posé
 	char			piece[21]; 		//La str de la piece 
 	char			id; 			//La lettre
 	struct s_lst	*next; 			//Le prochain maillon
