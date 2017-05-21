@@ -1,19 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putcharendl.c                                   :+:      :+:    :+:   */
+/*   ft_cp_tab.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/21 14:41:47 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/01/21 15:33:30 by vmercadi         ###   ########.fr       */
+/*   Created: 2017/04/07 16:11:32 by vmercadi          #+#    #+#             */
+/*   Updated: 2017/04/07 16:15:42 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putcharendl(char c)
+/*
+** Pour copier un tableau dans un autre
+*/
+char 	**ft_cp_tab(char **tab, char **dst, int len)
 {
-	ft_putchar(c);
-	ft_putchar('\n');
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < len)
+	{
+		j = 0;
+		while (j < len)
+		{
+			dst[i][j] = tab[i][j];
+			j++;
+		}
+		i++;
+	}
+	return (dst);
 }

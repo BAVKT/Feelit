@@ -1,19 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putcharendl.c                                   :+:      :+:    :+:   */
+/*   ft_print_tab.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/21 14:41:47 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/01/21 15:33:30 by vmercadi         ###   ########.fr       */
+/*   Created: 2017/04/07 16:13:29 by vmercadi          #+#    #+#             */
+/*   Updated: 2017/04/07 16:14:37 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putcharendl(char c)
+/*
+** Affiche un tableau
+*/
+void 	ft_print_tab(char **str, int size)
 {
-	ft_putchar(c);
-	ft_putchar('\n');
+	int i;
+	int j;
+
+	i = 0;
+	while (i < size)
+	{
+		j = 0;
+		while (j < size)
+		{
+			ft_putchar(str[i][j]);
+			j++;
+		}
+		i++;
+		ft_putchar('\n');
+	}
 }

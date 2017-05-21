@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_revstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 02:59:42 by vmercadi          #+#    #+#             */
-/*   Updated: 2016/12/04 19:12:47 by vmercadi         ###   ########.fr       */
+/*   Created: 2017/04/07 16:08:49 by vmercadi          #+#    #+#             */
+/*   Updated: 2017/04/07 16:09:06 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strcmp(const char *s1, const char *s2)
+/*
+** Permet d'inverser les caracteres d'une chaine 1 a 1
+*/
+char 	*ft_revstr(char *str)
 {
-	int				i;
+	char	*tmp;
+	int		i;
+	int		x;
 
 	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
+	x = ft_strlen(str);
+	tmp = (char *)malloc(sizeof(char) * ft_strlen(str) + 1);
+	while (str[i])
+	{
+		tmp[i] = str[x - i - 1];
 		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	}
+	tmp[i] = '\0';
+	return (tmp);
 }

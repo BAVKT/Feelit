@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putcharendl.c                                   :+:      :+:    :+:   */
+/*   ft_init_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/21 14:41:47 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/01/21 15:33:30 by vmercadi         ###   ########.fr       */
+/*   Created: 2017/04/07 16:17:07 by vmercadi          #+#    #+#             */
+/*   Updated: 2017/04/07 16:18:07 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putcharendl(char c)
+/*
+** Initialise le tableau.
+*/
+char	**ft_init_tab(int size)
 {
-	ft_putchar(c);
-	ft_putchar('\n');
+	char 	**tab;
+	int 	i;
+
+	i = 0;
+	tab = (char **)malloc(sizeof(char *) * size + 1);
+	while (i < size)
+	{
+		tab[i] = (char *)malloc(sizeof(char) * size + 1);
+		i++;
+	}
+	tab[i] = NULL;
+	return (tab);
 }
