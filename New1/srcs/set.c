@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:07 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/05/18 21:06:25 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/05/30 17:14:30 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 /*
 ** Defini le prev de chaque maillon de la liste
 */
-void 	setprev(t_lst *lst)
+
+void	setprev(t_lst *lst)
 {
-	t_lst 	*tmp;
+	t_lst	*tmp;
 
 	tmp = lst;
 	while (lst->next)
@@ -31,12 +32,13 @@ void 	setprev(t_lst *lst)
 /*
 ** Fonction pour remplir l'ID de chaque piece
 */
-void 	rempid(t_lst *lst)
+
+void	rempid(t_lst *lst)
 {
-	int 	i;
+	int	i;
 
 	i = 0;
-	while(lst)
+	while (lst)
 	{
 		lst->id = 'A' + i;
 		lst = lst->next;
@@ -47,6 +49,7 @@ void 	rempid(t_lst *lst)
 /*
 ** Fonction pour reset le OK de chaque maillon a chaque test d'ordre
 */
+
 void	resetnb(t_lst *lst)
 {
 	while (lst)
@@ -59,18 +62,18 @@ void	resetnb(t_lst *lst)
 /*
 ** Initialiation du cube et le rempli de points.
 */
-char	**initcube()
+
+char	**initcube(void)
 {
-	ft_putendl("initcube");
-	int i;
-	int j;
-	char **str;
+	int		i;
+	int		j;
+	char	**str;
 
 	i = 0;
 	str = (char **)malloc(sizeof(char *) * g_c.size);
 	while (i < g_c.size)
 	{
-		str[i] = (char *)malloc(sizeof(char) * g_c.size);		
+		str[i] = (char *)malloc(sizeof(char) * g_c.size);
 		i++;
 	}
 	i = 0;
@@ -90,7 +93,8 @@ char	**initcube()
 /*
 ** Initialise les variables des structs et listes
 */
-void	init()
+
+void	init(void)
 {
 	rempid(g_c.firstma);
 	setprev(g_c.firstma);

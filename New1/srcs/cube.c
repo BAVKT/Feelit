@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 17:41:21 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/05/22 16:30:21 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/05/30 17:16:55 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,12 @@
 /*
 ** recupere les indexs de la piece pour la deplacer d'une case
 */
+
 int		movepiece(t_lst *lst)
 {
-		ft_putendl("movepiece");
-			ft_putstr("lst = ");
-			ft_putcharendl(lst->id);
 	g_c.i = 0;
 	while (g_c.i < g_c.size)
 	{
-			ft_putendl("yo");
 		g_c.j = 0;
 		while (g_c.j < g_c.size)
 		{
@@ -41,42 +38,35 @@ int		movepiece(t_lst *lst)
 		lst->nb = g_c.nbok;
 		g_c.i = 0;
 		g_c.j = 0;
-			ft_putendl("1111");
 		return (1);
-	}			
-	//if (g_c.i >= g_c.size -1 && g_c.j >= g_c.size)
-	//	return (0);
+	}
 	g_c.i = 0;
 	g_c.j = 0;
-			ft_putendl("22222");
 	return (0);
 }
 
 /*
 ** Affichage du cube
 */
-void 	printcube()
+
+void	printcube(void)
 {
-			//ft_putendl("printcube");
 	int i;
-	
+
 	i = 0;
 	while (i < g_c.size)
 	{
 		ft_putendl(g_c.c[i]);
-		//ft_putstrcolor(str[i], CYAN);
 		i++;
 	}
-	ft_putendl("--------");
 }
 
 /*
 ** Suprime la piece passee
 */
+
 void	rmpiece(t_lst *lst)
 {
-		ft_putstr("rmpiece ");
-		ft_putcharendl(lst->id);
 	int		i;
 	int		j;
 
@@ -97,19 +87,14 @@ void	rmpiece(t_lst *lst)
 		g_c.nbok--;
 		lst->nb = 0;
 	}
-	//ft_putstr("nb + nbok : ");
-	//ft_putnbr(lst->nb);
-	//ft_putchar('-');
-	//ft_putnbrendl(g_c.nbok);
 }
 
 /*
 ** Ajout d'une ligne au cube
 */
-void 	onemore()
+
+void	onemore(void)
 {
-			ft_putendl("onemore");
-			printcube();
 	int i;
 
 	i = 0;

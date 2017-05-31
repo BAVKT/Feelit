@@ -6,22 +6,25 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:09 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/05/22 14:30:38 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/05/30 16:50:58 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fillit.h"
 
 /*
-** Check si les pieces sont bien séparées par un seul \n
+** Check if the number of \n is ok
 */
-int 	checknl(char *lignenl)
+
+int		checknl(char *lignenl)
 {
-	int 	i;
+	int	i;
+
 	i = 0;
 	while (lignenl[i])
-	{	//On vérifie juste qu'il y ait pas + de 3 nl a la suite
-		if (lignenl[i] == '\n' && lignenl[i + 1] == '\n' && lignenl[i + 2] == '\n')		
+	{
+		if (lignenl[i] == '\n' && lignenl[i + 1] == '\n'
+			&& lignenl[i + 2] == '\n')
 			return (0);
 		i++;
 	}
@@ -31,21 +34,25 @@ int 	checknl(char *lignenl)
 }
 
 /*
-** Check special pour les premieres et dernieres lignes (RIP la chair a canon)
+** Special check for the first and last lines
 */
-int 	checkstartend(char *ligne, int *i, int nbl)
+
+int		checkstartend(char *ligne, int *i, int nbl)
 {
-	//ft_putendl("checkstartend");
 	if (*i > 1 && nbl == 1)
-	{	//Check pour la premiere ligne (on enleve le check de la piece du dessus parce qu'il y en aura jamais)
-		if (ligne[*i - 1] == '#' || ligne[*i + 1] == '#' || ligne[*i + 5] == '#')
+	{
+		if (ligne[*i - 1] == '#'
+			|| ligne[*i + 1] == '#'
+			|| ligne[*i + 5] == '#')
 			return (1);
 		else
 			return (0);
 	}
 	else if (i < (int *)ft_strlen(ligne) && nbl == 4)
-	{	//Check pour la dernieres ligne (on enleve le check de la piece du dessous pour la meme raison)
-		if (ligne[*i - 1] == '#' || ligne[*i + 1] == '#' || ligne[*i - 5] == '#')
+	{
+		if (ligne[*i - 1] == '#'
+			|| ligne[*i + 1] == '#'
+			|| ligne[*i - 5] == '#')
 			return (1);
 		else
 			return (0);
@@ -54,47 +61,46 @@ int 	checkstartend(char *ligne, int *i, int nbl)
 }
 
 /*
-** Check si les tetriminos n'ont pas de malformations physiques parce qu'on veut pas d'handicapés 
+** Check if tetrimino is valid
 */
-int 	checkforme(char *ligne)
+
+int		checkforme(char *ligne)
 {
-	//ft_putendl("checkforme");
-	int 	i;
-	int 	nbl;	//Nombre de ligne
-	int		ok;
+	int	i;
+	int	nbl;
+	int	ok;
 
 	i = 0;
 	nbl = 1;
 	ok = 1;
 	while (ligne[i])
 	{
-		if (ligne[i] == '#' && (ok = checkstartend(ligne, &i, nbl))
-			 && (nbl == 1 || nbl == 4))
-			i++;
-		else if (ligne[i] == '.')
+		if ((ligne[i] == '#' && (ok = checkstartend(ligne, &i, nbl))
+			&& (nbl == 1 || nbl == 4)) || (ligne[i] == '.'))
 			i++;
 		else if (ligne[i] == '\n')
 		{
 			ligne[i - 1] == '\n' ? nbl = 1 : nbl++;
 			i++;
 		}
-		else if (ligne[i - 1] == '#' || ligne[i + 1] == '#' || 
+		else if (ligne[i - 1] == '#' || ligne[i + 1] == '#' ||
 				ligne[i + 5] == '#' || ligne[i - 5] == '#')
 			i++;
-		if (ok == 0) 	//On verifie que ok soit toujours = 1 sinon ca veut dire qu'il y a erreur
+		if (ok == 0)
 			return (0);
 	}
 	return (1);
 }
 
 /*
-** Check si il y a bien que des diezs et des points et en bon nombre parce qu'on est raciste du reste
+** Check if there is only . and #
 */
+
 int		check(char *lignenl)
 {
-	int		i;
-	int		pt;
-	int		diez;
+	int	i;
+	int	pt;
+	int	diez;
 
 	i = 0;
 	pt = 0;
@@ -103,8 +109,8 @@ int		check(char *lignenl)
 	{
 		if (lignenl[i] != '\n' && lignenl[i] != '.' && lignenl[i] != '#')
 			return (0);
-		if (((pt + diez) / 4 == 0 && lignenl[i] != '\n' && lignenl[i] != '.' 
-			 && lignenl[i] != '#') || pt + diez > 417)
+		if (((pt + diez) / 4 == 0 && lignenl[i] != '\n' && lignenl[i] != '.'
+			&& lignenl[i] != '#') || pt + diez > 417)
 			return (0);
 		if (lignenl[i] == '.')
 			pt++;
@@ -118,15 +124,16 @@ int		check(char *lignenl)
 }
 
 /*
-** Le main qui execute les checks
+** Main chek
 */
+
 int		maincheck(char **av, int fd)
 {
-	int 	ok;
-	int 	nb;
-	char 	*ligne;
-	char 	buf[42];
-	t_lst 	*lst;
+	int		ok;
+	int		nb;
+	char	*ligne;
+	char	buf[42];
+	t_lst	*lst;
 
 	nb = 42;
 	fd = open(av[1], O_RDONLY);

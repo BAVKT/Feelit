@@ -6,16 +6,13 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:50:09 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/05/22 13:10:01 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/05/30 16:30:22 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fillit.h"
 
-/*
-** Main de fillit
-*/
-int		main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	int		ok;
 	int		fd;
@@ -35,14 +32,5 @@ int		main(int ac, char **av)
 		return (0);
 	if (mainres())
 		ft_putstrcolor("SUCCESS", GREEN_BOLD);
-	//t_lst *lst;
-//
-	//lst = g_c.firstma;
-	//while (lst)
-	//{
-	//	ft_putcharendl(lst->id);
-	//	ft_putendl(lst->piece);
-	//	lst = lst->next;
-	//}
 	return (0);
 }
